@@ -1,7 +1,7 @@
 import './style.css';
 import logoif from './img/logoIF.png';
 
-function App() {
+export default function App() {
   return (
     <div className="container">
       
