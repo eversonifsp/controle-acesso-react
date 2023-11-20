@@ -6,8 +6,6 @@ export default function App() {
     <div className="container">
       
         <form className="form-login">
-        
-          <fieldset className='fieldset-form-login'>
 
             <div className='line'>
               
@@ -34,10 +32,10 @@ export default function App() {
 
             </div>
 
-          </fieldset> 
-
         </form>
 
     </div>
   );
 }
+
+export default App;
