@@ -31,7 +31,7 @@ body,html{
 
 .form-control {
   padding: 5px;
-  margin: 5px 0;
+  margin: 2px 0;
   outline: none;
   height: 50px;
   width: 100% ;
@@ -75,7 +75,7 @@ body,html{
 
 .line{
   display: flex;
-  padding: 0rem 1rem 3rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
 }
 
 .col-login{
@@ -96,7 +96,7 @@ body,html{
 }
 
 .col-button{
-  padding: 3rem 0rem 2rem 0rem;
+  padding:1rem 0rem 2rem 0rem;
   display: flex;
 }
 
@@ -104,6 +104,22 @@ body,html{
   width: 150px;
   height: 150px;
 }
+.button-voltar{
+    background-color: rgb(237, 13, 13);
+  border-radius: 5px;
+  height: 35px;
+  width: 35px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 30px;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 
 
 @media only screen and (max-width: 1024px) {
