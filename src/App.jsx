@@ -1,10 +1,10 @@
-import React from 'react';
+import './style.css';
+import logoif from './img/logoIF.png';
 
-const App = () => {
+ function App() {
   return (
-    <div>
-    </div>
+    <h1> App page </h1>
   );
-};
+}
 
 export default App;
