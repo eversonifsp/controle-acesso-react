@@ -1,0 +1,25 @@
+.button-camera{
+    background-color: #00ee98;
+    border-radius: 5px;
+    height: 50px;
+    width: 200px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button-camera:hover{
+    background-color: #00cd82;
+    box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25)
+  }
+  .col-button-registrar{
+    padding: 0rem 0rem 0rem 14rem;
+    display: flex;
+  }
+  .col-button-voltar{
+    padding: 0rem 19rem 1rem 0rem;
+    display: flex;
+  }

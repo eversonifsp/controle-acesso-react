@@ -1,7 +1,7 @@
-import './style.css';
-import logoif from './img/logoIF.png';
+import '../style.css';
+import logoif from '../img/logoIF.png';
 
-function login() {
+function Login() {
   return (
     <div className="container">
       
@@ -38,4 +38,6 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
+
+
