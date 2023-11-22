@@ -1,13 +1,13 @@
-import '../style.css';
+import './css/login.css';
 import logoif from '../img/logoIF.png';
 
 function Login() {
   return (
-    <div className="container">
+    <div className="container-login">
       
         <form className="form-login">
 
-            <div className='line'>
+            <div className='line-login'>
               
                 <div className='col-login'> Fazer Login </div>
 

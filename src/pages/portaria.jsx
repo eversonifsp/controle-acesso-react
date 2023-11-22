@@ -7,23 +7,27 @@ const Portaria= () =>{
   return (
        
     <view>
-        <div className="container">
-            <div className='col-login-logo'> <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className='logoif'/> </div>
+        <div className="container-portaria">
+
+        <div className="line-portaria">
+            <div className='col-portaria-logo'> <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className='logoif'/> </div>
+        </div>
+
             <div className="">
-            <Link to="/entrar">
-                <button className="entrada"> Registrar entrada</button>
-            </Link>
+                <Link to="/entrar">
+                    <button className="button-entrada"> Registrar entrada</button>
+                </Link>
             </div>
             
             <div className="">
-                <Link to = "/cadastrar">
-                <button className="cadastro"> Cadastrar visitante </button>
-
+                <Link to = "/sair">
+                    <button className="button-saida"> Registrar Saída </button>
                 </Link>
             </div>
+
             <div>
-                <Link to = "/sair">
-                    <button className="saida">Registrar Saida</button>
+                <Link to = "/">
+                    <button className="button-cae"> CAE </button>
                 </Link>
             </div>
         </div>

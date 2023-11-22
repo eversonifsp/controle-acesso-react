@@ -1,48 +1,59 @@
-.entrada{
+.line-portaria{
+  display: flex;
+  justify-content: center;
+}
+
+.button-entrada{
     width: 250px;
-    background: #00ffa0;
+    background: #14F500;
     padding: 1rem;
     border-radius: 0.3rem;
-    border: 0.5vmin solid #05060f;
+    border: none;
     overflow: hidden;
-    color: black;
+    font-weight: 500;
+    color: white;
     margin: 30px ;
     cursor: pointer;
   }
-  .entrada:hover{
-    background-color: #00cd82;
+  .button-entrada:hover{
+    background-color: #11c001;
     box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25)
   }
-  .saida{
+  .button-saida{
     width: 250px;
-    background: #e72b50;
+    background: #FF0202;
     padding: 1rem;
     border-radius: 0.3rem;
-    border: 0.5vmin solid #05060f;
+    border: none;
     overflow: hidden;
-    color: black;
+    font-weight: 500;
+    color: white;
     margin: 30px ;
     cursor: pointer;
 
   }
-  .saida:hover{
-    background-color: rgb(204, 51, 51);
+  .button-saida:hover{
+    background-color: #ba0202;
     box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25)
   }
-  .cadastro{
+
+  .button-cae{
     width: 250px;
-    background: #6029f6;
+    background: #00EE99;
     padding: 1rem;
     border-radius: 0.40rem;
-    border: 0.5vmin solid #05060f;
+    border: none;
     overflow: hidden;
-    color: black;
+    font-weight: 500;
+    color: white;
     text-align: center;
     text-decoration-color: #ffffff;
     margin: 30px;
     cursor: pointer;
   }
-  .cadastro:hover{
-    background-color: rgb(30, 34, 164);
+  .button-cae:hover{
+    background-color: #02b677;
     box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25)
   }
+
+ 
