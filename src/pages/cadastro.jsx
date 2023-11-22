@@ -1,4 +1,3 @@
-import '../style.css';
 import './css/cadastro-style.css';
 import { FaCamera } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
@@ -6,7 +5,6 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from '../img/logoIF.png';
 import { Link } from "react-router-dom";
 import React from 'react'
-import Secretaria from './secretaria';
 
 function Cadastro() {
   return (

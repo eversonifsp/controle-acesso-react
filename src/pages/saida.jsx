@@ -1,4 +1,3 @@
-import '../style.css';
 import './css/entrada-style.css'
 import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";

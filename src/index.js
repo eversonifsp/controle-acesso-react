@@ -8,7 +8,6 @@ import Login from './pages/login';
 import Portaria from './pages/portaria';
 import Cadastro from './pages/cadastro';
 import Saida from './pages/saida';
-import Secretaria from './pages/secretaria';
 
 const router = createBrowserRouter([
   {
@@ -35,12 +34,7 @@ const router = createBrowserRouter([
   {
     path:"portaria",
     element: <Portaria/>
-  },
-  {
-    path:"secretaria",
-    element: <Secretaria/>
-
-  },
+  }
 ])
 
 

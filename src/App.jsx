@@ -1,4 +1,3 @@
-import './style.css';
 import logoif from './img/logoIF.png';
 
  function App() {
