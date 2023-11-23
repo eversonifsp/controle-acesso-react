@@ -11,7 +11,7 @@ import Saida from './pages/saida';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/login",
     element:<Login/> 
   },
   {
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
   {
     path:"portaria",
     element: <Portaria/>
+  },
 ])
 
 
