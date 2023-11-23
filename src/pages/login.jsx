@@ -1,11 +1,27 @@
 import '../style.css';
 import logoif from '../img/logoIF.png';
+import { useState } from 'react';
+
 
 function Login() {
+        
+  const [valor, setValor] = useState({
+    usuario: '',
+    password: ''
+    });
+  const valorEntrada = (e) => setValor({ ...valor, [e.target.name]: e.target.value});
+
+  const loginUs = async (e) => {
+
+    // Bloquear o recarregamento da página
+    e.preventDefault();
+    {console.log(valor)}
+  }
+
   return (
     <div className="container">
       
-        <form className="form-login">
+        <form className="form-login" onSubmit={loginUs}>
 
             <div className='line'>
               
@@ -19,15 +35,15 @@ function Login() {
 
 
               <div className='col-user'>
-                <input type="text" className="form-control" placeholder="Usuário"></input>
+                <input type="text" name="usuario"className="form-control" placeholder="Usuário" onChange={valorEntrada}></input>
               </div>
 
               <div className='col-pass'>
-                <input type="password" className="form-control" placeholder="Senha"></input>
+                <input type="password" name="password" className="form-control" placeholder="Senha" onChange={valorEntrada}></input>
               </div>
 
               <div className='col-button'>
-                <button className="button-login"> Entrar </button>
+                <button type='submit' className="button-login"> Entrar </button>
               </div>
 
             </div>
@@ -35,8 +51,11 @@ function Login() {
         </form>
 
     </div>
+
+
   );
 }
+
 
 export default Login;
 
