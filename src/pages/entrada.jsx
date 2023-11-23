@@ -1,12 +1,12 @@
 import './css/entrada-style.css'
 import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
-import logoif from '../img/logoIF.png';
-import React from 'react'
-import { Link } from 'react-router-dom';
+import logoif from "../img/logoIF.png";
+import React from "react";
 
 function Entrar() {
   return (
+
     <div className="container-entrar">
          <form className="form-entrar">
 
@@ -37,6 +37,7 @@ function Entrar() {
 </div>
 
 </form>
+
     </div>
   );
 }

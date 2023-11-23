@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import './css/portaria-style.css'
-import logoif from '../img/logoIF.png';
+import "./css/portaria-style.css";
+import logoif from "../img/logoIF.png";
 
-
-const Portaria= () =>{
+const Portaria = () => {
   return (
-       
     <view>
         <div className="container-portaria">
 
@@ -30,10 +28,11 @@ const Portaria= () =>{
                     <button className="button-cae"> CAE </button>
                 </Link>
             </div>
-        </div>
-                
-    </view>
-    )
-}
 
-export default Portaria
+        </div>
+      </div>
+    </view>
+  );
+};
+
+export default Portaria;
