@@ -30,7 +30,6 @@ const Portaria = () => {
             </div>
 
         </div>
-      </div>
     </view>
   );
 };
