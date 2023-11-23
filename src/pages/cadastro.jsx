@@ -1,4 +1,4 @@
-import "../style.css";
+
 import "./css/cadastro-style.css";
 import { FaCamera } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";

@@ -5,20 +5,14 @@ body,html{
   justify-content: center;
 }
 
-#root{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container{
+.container-login{
   margin: auto;
   border-radius: 10px;
   background: #FFF;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
   border: none;
-  min-height: 40vh;
+  min-height: 85vh;
   max-width: 400px;
   width: 100%;
 }
@@ -29,9 +23,9 @@ body,html{
   flex-direction: column;
 }
 
-.form-control {
+.form-control-login {
   padding: 5px;
-  margin: 2px 0;
+  margin: 5px 0;
   outline: none;
   height: 50px;
   width: 100% ;
@@ -44,7 +38,7 @@ body,html{
   font-size: 15px;
 }
 
-.form-control:hover,.form-control:focus,.form-control:active {
+.form-control-login:hover,.form-control-login:focus,.form-control-login:active {
   border-color: transparent;
   border-bottom: 2px solid #00ee98;
   border-radius: 0;
@@ -69,13 +63,9 @@ body,html{
   box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
 }
 
-[class^="col-"] {
-  padding: 1.5rem 2rem 0rem 2rem;
-}
-
-.line{
+.line-login{
   display: flex;
-  padding: 0rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 3rem 1rem;
 }
 
 .col-login{
@@ -86,6 +76,7 @@ body,html{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1.5rem 2rem 0rem 2rem;
 }
 
 .col-login-logo{
@@ -93,34 +84,17 @@ body,html{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 1.5rem 2rem 0rem 2rem;
 }
 
-.col-button{
-  padding:1rem 0rem 2rem 0rem;
+.col-button-login{
+  padding: 3rem 0rem 2rem 0rem;
   display: flex;
 }
 
-.logoif{
-  width: 150px;
-  height: 150px;
+.col-user-login, .col-pass-login{
+  padding: 1.5rem 2rem 0rem 2rem;
 }
-.button-voltar{
-    background-color: rgb(237, 13, 13);
-  border-radius: 5px;
-  height: 35px;
-  width: 35px;
-  border: none;
-  color: white;
-  font-weight: 500;
-  font-size: 30px;
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
-
-
 
 @media only screen and (max-width: 1024px) {
   
@@ -144,25 +118,28 @@ body,html{
       flex-direction: column;
   }
 
-  .container{
+  .container-login{
       box-shadow: none;
       max-width: 80%;
   }
 
   .logoif{
       width: 100px;
-      height: 100px;
+      height: 120px;
   }
 
-  [class^="col-"] {
+  .col-user-login,
+  .col-pass-login,
+  .col-button-login,
+  .col-login,
+  .col-login-logo{
       padding: 1.5rem 0.5rem 0rem 0.5rem;
     }
 }
 
 @media only screen and (max-width: 480px){
 
-  .container{
-      box-shadow: none;
+  .container-login{
       max-width: 90%;
   }
 

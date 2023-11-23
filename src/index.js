@@ -34,8 +34,6 @@ const router = createBrowserRouter([
   {
     path:"portaria",
     element: <Portaria/>
-  },
- 
 ])
 
 
