@@ -1,5 +1,20 @@
+.container-portaria{
+  margin: auto;
+  background: #FFF;
+  backdrop-filter: blur(2px); 
+  min-height: 85vh;
+  max-width: 400px;
+  width: 100%;
+}
+
 .line-portaria{
   display: flex;
+  justify-content: center;
+}
+
+.col-registrar-entrada, .col-registrar-saida, .col-registrar-cae{
+  display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 
@@ -57,3 +72,17 @@
   }
 
  
+  @media only screen and (max-width: 1024px) {
+  
+    .button-entrada, .button-saida, .button-cae{
+       font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+
+  .logoif{
+      width: 100px;
+      height: 120px;
+  }
+}

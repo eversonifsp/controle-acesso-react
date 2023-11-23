@@ -7,34 +7,33 @@ import { Link } from 'react-router-dom';
 
 function Entrar() {
   return (
-    <div className="container">
-         <form className="form-login">
+    <div className="container-entrar">
+         <form className="form-entrar">
 
-<div className='line'>
+<div className='line-entrar'>
   
-    <div className='col-login'> Registrar Entrada </div>
+    <div className='col-entrar'> Registrar Entrada </div>
 
-    <div className='col-login-logo'> <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className='logoif'/> </div>
+    <div className='col-entrar-logo'> <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className='logoif'/> </div>
 
 </div>  
 
-<div className="form-login-input">
-
-
-  <div className='col-user'>
-    <input type="text" className="form-control" placeholder="Prontuario ou CPF"></input> <button className='button-login'> Registrar</button>
+  <div className='col-user-entrar'>
+    <input type="text" className="form-control-entrar" placeholder="Prontuario ou CPF"></input>
   </div>
 
- <div className=''>
-    <button className='camera'> </button>
+ <div className='col-camera-entrar'>
+    <button className="button-camera-entrar"> <IoQrCodeOutline/>  Ler QRcode  </button>
  </div>
-  <div className='col-button'>
-    <button className="button-camera"> Ler QRcode <IoQrCodeOutline /></button>
-  </div>
-  <div className='col-button-voltar'>
-      <button className='button-voltar'> <IoArrowBackCircle /> </button>
+
+<div className='line-button-entrar'>
+  <div className='col-button-entrar'>
+      <button className='button-entrar'> Registrar</button>
   </div>
 
+  <div className='col-button-voltar-entrar'>
+      <button className='button-voltar-entrar'> <IoArrowBackCircle /> Voltar</button>
+  </div>
 </div>
 
 </form>

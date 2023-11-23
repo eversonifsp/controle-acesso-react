@@ -15,22 +15,19 @@ function Login() {
             
             </div>  
             
-            <div className="form-login-input">
 
-
-              <div className='col-user'>
-                <input type="text" className="form-control" placeholder="Usuário"></input>
+              <div className='col-user-login'>
+                <input type="text" className="form-control-login" placeholder="Usuário"></input>
               </div>
 
-              <div className='col-pass'>
-                <input type="password" className="form-control" placeholder="Senha"></input>
+              <div className='col-pass-login'>
+                <input type="password" className="form-control-login" placeholder="Senha"></input>
               </div>
 
-              <div className='col-button'>
+              <div className='col-button-login'>
                 <button className="button-login"> Entrar </button>
               </div>
 
-            </div>
 
         </form>
 

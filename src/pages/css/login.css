@@ -5,12 +5,6 @@ body,html{
   justify-content: center;
 }
 
-#root{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .container-login{
   margin: auto;
   border-radius: 10px;
@@ -18,7 +12,7 @@ body,html{
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
   border: none;
-  min-height: 40vh;
+  min-height: 85vh;
   max-width: 400px;
   width: 100%;
 }
@@ -29,7 +23,7 @@ body,html{
   flex-direction: column;
 }
 
-.form-control {
+.form-control-login {
   padding: 5px;
   margin: 5px 0;
   outline: none;
@@ -44,7 +38,7 @@ body,html{
   font-size: 15px;
 }
 
-.form-control:hover,.form-control:focus,.form-control:active {
+.form-control-login:hover,.form-control-login:focus,.form-control-login:active {
   border-color: transparent;
   border-bottom: 2px solid #00ee98;
   border-radius: 0;
@@ -93,19 +87,14 @@ body,html{
   padding: 1.5rem 2rem 0rem 2rem;
 }
 
-.col-button{
+.col-button-login{
   padding: 3rem 0rem 2rem 0rem;
   display: flex;
 }
 
-.col-user, .col-pass{
+.col-user-login, .col-pass-login{
   padding: 1.5rem 2rem 0rem 2rem;
 }
-
-.logoif{
-  height: 150px;
-}
-
 
 @media only screen and (max-width: 1024px) {
   
@@ -139,9 +128,9 @@ body,html{
       height: 120px;
   }
 
-  .col-user,
-  .col-pass,
-  .col-button,
+  .col-user-login,
+  .col-pass-login,
+  .col-button-login,
   .col-login,
   .col-login-logo{
       padding: 1.5rem 0.5rem 0rem 0.5rem;
@@ -151,7 +140,6 @@ body,html{
 @media only screen and (max-width: 480px){
 
   .container-login{
-      box-shadow: none;
       max-width: 90%;
   }
 
