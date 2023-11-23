@@ -32,11 +32,11 @@ function Login() {
             </div>
 
               <div className='col-user-login'>
-                <input type="text" name="usuario"className="form-control" placeholder="Usuário" onChange={valorEntrada}></input>
+                <input type="text" name="usuario"className="form-control-login" placeholder="Usuário" onChange={valorEntrada}></input>
               </div>
 
               <div className='col-pass-login'>
-                <input type="password" name="password" className="form-control" placeholder="Senha" onChange={valorEntrada}></input>
+                <input type="password" name="password" className="form-control-login" placeholder="Senha" onChange={valorEntrada}></input>
               </div>
 
               <div className='col-button-login'>
