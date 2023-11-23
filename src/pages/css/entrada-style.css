@@ -153,6 +153,10 @@
       justify-content: space-around;
   }
 
+  .container-entrar{
+    min-height: 45vh;
+  }
+
   .button-entrar, .button-voltar-entrar{
      font-size: 15px;
 }
