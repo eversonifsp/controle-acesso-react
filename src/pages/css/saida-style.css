@@ -152,6 +152,10 @@
         align-items: stretch;
         justify-content: space-around;
     }
+    
+    .container-sair{
+      min-height: 45vh;
+    }
   
     .button-sair, .button-voltar-sair{
        font-size: 15px;
