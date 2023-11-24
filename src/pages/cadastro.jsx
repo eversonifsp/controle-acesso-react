@@ -23,82 +23,47 @@ function Cadastro() {
   };
 
   return (
-    <div className="container">
-      <form className="form-login" onSubmit={AddVisitante}>
-        <div className="line">
-          <div className="col-login"> Cadastrar o visitante </div>
+    <div className="container-cadastro">
+      <form className="form-cadastro" onSubmit={AddVisitante}>
+        <div className="line-cadastro">
+          <div className="col-cadastro"> Cadastrar visitante </div>
 
-          <div className="col-login-logo">
-            {" "}
-            <img
-              src={logoif}
-              alt="Logo do Instituto Federal de Cubatão"
-              className="logoif"
-            />{" "}
+          <div className="col-cadastro-logo">
+            <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className="logoif" />
           </div>
         </div>
 
-        <div className="form-login-input">
-          <div className="col-user">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Nome"
-              name="nome"
-              onChange={valorEntrada}
-            ></input>
+          <div className="col-nome-cadastro">
+              <input type="text" className="form-control-cadastro" placeholder="Nome" name="nome" onChange={valorEntrada}></input>
           </div>
 
-          <div className="col-user">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="CPF"
-              name="cpf"
-              onChange={valorEntrada}
-            ></input>
+          <div className="col-user-cadastro">
+            <input type="text" className="form-control-cadastro" placeholder="CPF" name="cpf" onChange={valorEntrada}></input>
           </div>
 
-          <div className="col-user">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="E-mail"
-              name="email"
-              onChange={valorEntrada}
-            ></input>
+        <div className='line-contato-cadastro'>
+          <div className="col-email-cadastro"> 
+              <input type="text" className="form-control-cadastro" placeholder="E-mail" name="email" onChange={valorEntrada}></input>
           </div>
 
-          <div className="col-user">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Telefone"
-              name="telefone"
-              onChange={valorEntrada}
-            ></input>
-          </div>
-          <div className="col-button-foto">
-          </div>
-            <button type="button" className="button-camera">
-              {" "}
-              Foto do Visitante <FaCamera />
-            </button>
-          <div>
-            <div className="col-button">
-              <button type="submit"className="button-registro">
-                {" "}
-                Cadastrar <FaUserPlus />{" "}
-              </button>
-            </div>
-            <div className="col-button-voltar">
-              <button type="button" className="button-voltar">
-                {" "}
-                <IoArrowBackCircle />{" "}
-              </button>
-            </div>
+          <div className="col-tel-cadastro"> 
+              <input type="text" className="form-control-cadastro" placeholder="Telefone" name="telefone" onChange={valorEntrada}></input>
           </div>
         </div>
+
+          <div className="col-foto-cadastro">
+              <button type="button" className="button-camera-cadastro">{" "} <FaCamera/> Foto do Visitante</button>
+          </div>
+
+          <div className='line-button-cadastro'>
+            <div className="col-button-cadastro">
+                <button type="submit"className="button-registro-cadastro">{" "} <FaUserPlus /> Cadastrar {" "}</button>
+            </div>
+
+            <div className="col-button-voltar-cadastro"> 
+                <button type="button" className="button-voltar-cadastro"> {" "} <IoArrowBackCircle /> Voltar {" "} </button>
+            </div>
+          </div>
       </form>
     </div>
   );
