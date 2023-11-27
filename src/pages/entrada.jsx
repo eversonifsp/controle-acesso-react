@@ -3,6 +3,9 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, {useState} from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
 
 function Entrar() {
 
@@ -14,9 +17,17 @@ function Entrar() {
 
   const registraEntrada = async (e) => {
     // Bloquear o recarregamento da página
+    if(valor.cb_cpf == ""){
+      toast.error("prontuario ou cpf invalido")
+    }else{
+      toast.success("entrada registrada com sucesso")
+    }
+
     e.preventDefault();
     {console.log(valor);}
   };
+  const history = useNavigate();
+
 
   return (
 
@@ -45,8 +56,9 @@ function Entrar() {
       <button className='button-entrar' type='submit'> Registrar</button>
   </div>
 
+  <ToastContainer />
   <div className='col-button-voltar-entrar'>
-      <button className='button-voltar-entrar' type='button'> <IoArrowBackCircle /> Voltar</button>
+      <button className='button-voltar-entrar' type='button' onClick={() =>     history('/portaria')}> <IoArrowBackCircle /> Voltar</button>
   </div>
 </div>
 

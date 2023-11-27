@@ -5,6 +5,8 @@ import { FaUserPlus } from "react-icons/fa6";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
 
 function Cadastro() {
   const [valor, setValor] = useState({
@@ -20,6 +22,12 @@ function Cadastro() {
     // Bloquear o recarregamento da página
     e.preventDefault();
     {console.log(valor);}
+    if(valor.cpf == "" || valor.nome == "" || valor.email == "" || valor.telefone == ""){
+      toast.error("preencha todos os campos")
+    }else{
+      toast.success("entrada registrada com sucesso")
+    }
+
   };
 
   return (
@@ -57,6 +65,7 @@ function Cadastro() {
 
           <div className='line-button-cadastro'>
             <div className="col-button-cadastro">
+              <ToastContainer/>
                 <button type="submit"className="button-registro-cadastro">{" "} <FaUserPlus /> Cadastrar {" "}</button>
             </div>
 
