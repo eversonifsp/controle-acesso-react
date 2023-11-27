@@ -4,11 +4,15 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, {useState} from "react";
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
 
 function Saida() {
   const [valor, setValor] = useState({
     cb_cpf: "",
   });
+
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
@@ -16,8 +20,15 @@ function Saida() {
     // Bloquear o recarregamento da página
     e.preventDefault();
     {console.log(valor);}
+  
+    if(valor.cb_cpf == ""){
+      toast.error("Prontuario ou CPF invalido")
+    }else{
+      toast.success("Saida registrada com sucesso")
+    }
   };
-
+  
+  const history = useNavigate();
   return (
 
     <div className="container-sair">
@@ -41,11 +52,12 @@ function Saida() {
 
 <div className='line-button-sair'>
   <div className='col-button-sair'>
-      <button type="submit" className='button-sair'> Registrar</button>
+      <ToastContainer/>
+      <button type="submit" className='button-sair' > Registrar</button>
   </div>
 
   <div className='col-button-voltar-sair'>
-      <button type="button" className='button-voltar-sair'> <IoArrowBackCircle /> Voltar</button>
+      <button type="button" className='button-voltar-sair' onClick={() => history('/portaria')} > <IoArrowBackCircle /> Voltar</button>
   </div>
 </div>
 

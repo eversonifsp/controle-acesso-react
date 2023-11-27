@@ -23,12 +23,6 @@ const Portaria = () => {
                 </Link>
             </div>
 
-            <div className="col-registrar-cae">
-                <Link to = "/">
-                    <button className="button-cae"> CAE </button>
-                </Link>
-            </div>
-
         </div>
     </view>
   );
