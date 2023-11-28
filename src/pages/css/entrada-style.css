@@ -223,7 +223,7 @@
   }
   
   .line-entrar{
-    padding: 0rem 0rem 1rem 0rem;
+    padding: 0rem 0rem 1rem 0rem !important;
   }
 
   .logoif{
@@ -232,18 +232,18 @@
   }
 
   .form-control-entrar{
-    height: 45px;
+    height: 45px !important;
   }
 
   .col-user-entrar,
   .col-name-entrar,
   .col-tel-entrar,
   .col-email-entrar{
-      padding: 1.5rem 0.5rem 0rem 0.5rem;
+      padding: 1.5rem 0.5rem 0rem 0.5rem !important;
     }
 
   .col-entrar{
-      padding: 1.5rem 0.5rem 0rem 0.5rem;
+    padding: 1.5rem 0.5rem 0rem 0.5rem ;
     }
 
   .col-entrar-logo{
