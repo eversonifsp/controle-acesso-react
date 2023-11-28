@@ -21,12 +21,24 @@
   padding: 0rem 1rem 3rem 1rem;
 }
 
+.line-radio{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: center;
+}
+
+.line-radio label{
+  cursor: pointer;
+}
+
 .line-button-entrar{
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;
-  padding: 3rem 2rem 0rem 2rem;
+  padding: 1.5rem 2rem 1rem 2rem;
 }
 
 .col-entrar{
@@ -49,11 +61,17 @@
 }
 
 .col-user-entrar{
-  padding: 1.5rem 2rem 0rem 2rem;
+  padding: 1.5rem 2rem 0rem 2rem
+}
+
+.col-name-entrar,
+.col-tel-entrar,
+.col-email-entrar{
+  padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
 .col-camera-entrar{
-  padding: 1.5rem 2rem 0rem 2rem;
+  padding: 0.5rem 2rem 0rem 2rem;
   display: flex;
   justify-content: center;
 }
@@ -79,11 +97,40 @@
   border-radius: 0;
 }
 
+
+.form-radio{
+  appearance: none;
+}
+
+.reg{
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+.form-radio:checked + .reg::before{
+  background-color: #14F500;
+}
+
+.reg::before{
+  content: '';
+  display: block;
+  height: 0.8rem;
+  width: 0.8rem;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: 0.3s ease-in-out;
+  padding: 1px;
+}
+
 .button-camera-entrar{
   background-color: #14F500;
   border-radius: 5px;
-  height: 50px;
-  width: 200px;
+  height: 35px;
+  width: 120px;
   border: none;
   color: white;
   font-weight: 500;
@@ -184,7 +231,14 @@
       height: 120px;
   }
 
-  .col-user-entrar{
+  .form-control-entrar{
+    height: 45px;
+  }
+
+  .col-user-entrar,
+  .col-name-entrar,
+  .col-tel-entrar,
+  .col-email-entrar{
       padding: 1.5rem 0.5rem 0rem 0.5rem;
     }
 
