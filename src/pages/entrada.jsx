@@ -47,6 +47,41 @@ function Entrar() {
     <input type="text" className="form-control-entrar" placeholder="Prontuario ou CPF" name="cb_cpf" onChange={valorEntrada}></input>
   </div>
 
+  
+<div className='campos-cadastrar' id='campos'>
+
+  <div className='col-name-entrar'>
+    <input type="text" className="form-control-entrar" placeholder="Nome" name="" onChange={valorEntrada}></input>
+  </div>
+
+  <div className='col-tel-entrar'>
+    <input type="text" className="form-control-entrar" placeholder="Telefone" name="" onChange={valorEntrada}></input>
+  </div>
+
+  <div className='col-email-entrar'>
+    <input type="text" className="form-control-entrar" placeholder="E-mail" name="" onChange={valorEntrada}></input>
+  </div>
+
+</div>
+
+<div className='line-radio'>
+  <div className='line-line-radio'>
+          <div className="col-registrado"> 
+                  
+                  <input type="radio" className="form-radio" name="opcao" id="opc1" value="registrado"></input>
+                  <label for="opc1" className='reg'>  Registrado</label>
+          </div>
+  </div>
+
+  <div className='line-line-radio'>
+          <div className="col-nao-registrado">   
+                  
+                  <input type="radio" className="form-radio" name="opcao" id="opc2" value="nao_registrado"></input> 
+                  <label for="opc2" className='reg'>  Não Registrado </label>
+          </div>
+    </div>
+  </div>
+
  <div className='col-camera-entrar'>
     <button className="button-camera-entrar" type='button'> <IoQrCodeOutline/>  Ler QRcode  </button>
  </div>
