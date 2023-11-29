@@ -12,13 +12,13 @@ const Portaria = () => {
         </div>
 
             <div className="col-registrar-entrada">
-                <Link to="/entrar">
+                <Link to="/entrada">
                     <button className="button-entrada"> Registrar entrada</button>
                 </Link>
             </div>
             
             <div className="col-registrar-saida">
-                <Link to = "/sair">
+                <Link to = "/saida">
                     <button className="button-saida"> Registrar Saída </button>
                 </Link>
             </div>
