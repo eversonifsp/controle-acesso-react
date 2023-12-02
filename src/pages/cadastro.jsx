@@ -1,5 +1,5 @@
 
-import "./css/cadastro-style.css";
+import "./css/adm-style.css";
 import { FaCamera } from "react-icons/fa";
 import { FaUserPlus } from "react-icons/fa6";
 import { IoArrowBackCircle } from "react-icons/io5";
@@ -23,48 +23,23 @@ function Cadastro() {
   };
 
   return (
-    <div className="container-cadastro">
-      <form className="form-cadastro" onSubmit={AddVisitante}>
-        <div className="line-cadastro">
-          <div className="col-cadastro"> Cadastrar visitante </div>
+    <div className="container-adm">
 
-          <div className="col-cadastro-logo">
-            <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className="logoif" />
-          </div>
+    <div className="line-adm">
+        <div className='col-adm-logo'> <img src={logoif} alt="Logo do Instituto Federal de Cubatão" className='logoif'/> </div>
+    </div>
+
+        <div className="col-fluxo">
+            
+                <button className="button-fluxo">Fluxo de entrada e saída</button>
+          
         </div>
-
-          <div className="col-nome-cadastro">
-              <input type="text" className="form-control-cadastro" placeholder="Nome" name="nome" onChange={valorEntrada}></input>
-          </div>
-
-          <div className="col-user-cadastro">
-            <input type="text" className="form-control-cadastro" placeholder="CPF" name="cpf" onChange={valorEntrada}></input>
-          </div>
-
-        <div className='line-contato-cadastro'>
-          <div className="col-email-cadastro"> 
-              <input type="text" className="form-control-cadastro" placeholder="E-mail" name="email" onChange={valorEntrada}></input>
-          </div>
-
-          <div className="col-tel-cadastro"> 
-              <input type="text" className="form-control-cadastro" placeholder="Telefone" name="telefone" onChange={valorEntrada}></input>
-          </div>
+        
+        <div className="col-consulta">
+            
+                <button className="button-consulta"> Gerenciar Usuários </button>
+            
         </div>
-
-          <div className="col-foto-cadastro">
-              <button type="button" className="button-camera-cadastro">{" "} <FaCamera/> Foto do Visitante</button>
-          </div>
-
-          <div className='line-button-cadastro'>
-            <div className="col-button-cadastro">
-                <button type="submit"className="button-registro-cadastro">{" "} <FaUserPlus /> Cadastrar {" "}</button>
-            </div>
-
-            <div className="col-button-voltar-cadastro"> 
-                <button type="button" className="button-voltar-cadastro"> {" "} <IoArrowBackCircle /> Voltar {" "} </button>
-            </div>
-          </div>
-      </form>
     </div>
   );
 }
