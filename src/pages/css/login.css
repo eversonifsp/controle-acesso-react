@@ -1,9 +1,9 @@
-body,html{
+/* body,html{
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: center; 
+} */
 
 .container-login{
   margin: auto;
