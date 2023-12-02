@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Entrar from './pages/entrada';
 import Login from './pages/login';
 import Portaria from './pages/portaria';
-import Cadastro from './pages/cadastro';
+import Adm from './pages/adm';
 import Saida from './pages/saida';
 
 const router = createBrowserRouter([
@@ -27,10 +27,9 @@ const router = createBrowserRouter([
     element: <Saida/>
   },
   {
-    path:"cadastrar",
-    element:<Cadastro/>
+    path:"adm",
+    element:<Adm/>
   },
-
   {
     path:"portaria",
     element: <Portaria/>
