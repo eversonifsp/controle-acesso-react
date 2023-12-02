@@ -8,6 +8,7 @@ import Login from './pages/login';
 import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
+import Gerenciar from './pages/gerenciar_usuarios';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,12 @@ const router = createBrowserRouter([
     path:"portaria",
     element: <Portaria/>
   },
+
+  {
+    path:"gerenciar",
+    element: <Gerenciar/>
+  }  
+
 ])
 
 
