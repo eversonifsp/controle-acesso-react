@@ -7,28 +7,30 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 function Login() {
+
+  const history = useNavigate();
+  
   const [valor, setValor] = useState({
     prontuario: "",
     password: "",
   });
-  const history = useNavigate();
   const valorEntrada = (e) =>
-    setValor({ ...valor, [e.target.name]: e.target.value });
-
+  setValor({ ...valor, [e.target.name]: e.target.value });
+  
   const loginUs = async (e) => {
     e.preventDefault();
     console.log(valor);
     try {
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3001/login", {
         usuario: {
           prontuario: valor.prontuario,
           password: valor.password,
         },
       });
-
+      const token = response.headers.authorization;
+      
       if (response.status === 200) {
         // Captura o token no headers
-        const token = response.headers.authorization;
         // Armazena no localStorage
         localStorage.setItem("token", token);
         console.log("Token:", token);
@@ -44,9 +46,11 @@ function Login() {
     } catch (error) {
       toast.error("Usuario ou senha invalida!");
     }
+    
   };
 
   return (
+    {loginUs},
     <div className="container-login">
       <form className="form-login" onSubmit={loginUs}>
         <div className="line-login">

@@ -7,28 +7,54 @@ import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
+import axios from 'axios';
 
 function Saida() {
-  const [valor, setValor] = useState({
-    cb_cpf: "",
-  });
+  const storedToken = localStorage.getItem("token");
+  console.log(storedToken)
+  const history = useNavigate();
 
-  const valorEntrada = (e) =>
+  const [valor, setValor] = useState({
+    prontuario: "",
+  });
+  const valorSaida = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
   const registraSaida = async (e) => {
-    // Bloquear o recarregamento da página
     e.preventDefault();
     {console.log(valor);}
-  
-    if(valor.cb_cpf == ""){
-      toast.error("Prontuario ou CPF invalido")
-    }else{
-      toast.success("Saida registrada com sucesso")
+    // Bloquear o recarregamento da página
+    // if(valor.cb_cpf == ""){
+    //   toast.error("prontuario ou cpf invalido")
+    // }else{
+    //   toast.success("entrada registrada com sucesso")
+    // }
+    try {
+      console.log("chegou")
+      
+      console.log(storedToken)
+      
+      const response = await axios.post(`http://127.0.0.1:3001/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
+      {
+        "tipo":"saida"
+      },
+      {
+        headers:{Authorization: storedToken}
+       },//{
+      //   params: {"prontuario": valor.prontuario}
+      // }
+      );
+      
+      console.log(valor.prontuario )
+      if (response.status === 201) {
+        toast.success("Saida registrada com sucesso")
+      } else {
+        toast.error("Usuario ou senha invalida!");
+      }
+    } catch (error) {
+      toast.error("Usuario ou senha invalida!");
     }
   };
-  
-  const history = useNavigate();
   return (
 
     <div className="container-sair">
@@ -43,7 +69,7 @@ function Saida() {
 </div>  
 
   <div className='col-user-sair'>
-    <input type="text" className="form-control-sair" placeholder="Prontuario ou CPF" name="cb_cpf" onChange={valorEntrada}></input>
+    <input type="text" className="form-control-sair" placeholder="Prontuario ou CPF" name="prontuario" onChange={valorSaida}></input>
   </div>
 
  <div className='col-camera-sair'>

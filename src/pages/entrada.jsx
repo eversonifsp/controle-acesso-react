@@ -6,27 +6,47 @@ import React, {useState} from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
-
+import axios from 'axios';
+import loginUs from './login';
+import Login from './login';
 function Entrar() {
+  
+  const storedToken = localStorage.getItem("token");
+  console.log(storedToken)
+  const history = useNavigate();
 
   const [valor, setValor] = useState({
-    cb_cpf: "",
+    prontuario: "",
   });
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
   const registraEntrada = async (e) => {
-    // Bloquear o recarregamento da página
-    if(valor.cb_cpf == ""){
-      toast.error("prontuario ou cpf invalido")
-    }else{
-      toast.success("entrada registrada com sucesso")
-    }
-
     e.preventDefault();
-    {console.log(valor);}
+    try {      
+      console.log(storedToken)
+      
+      const response = axios.post(`http://127.0.0.1:3001/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
+      {
+        "tipo":"entrada"
+      },
+      {
+        headers:{Authorization: storedToken}
+       },
+      );
+      
+      console.log(valor.prontuario )
+      if (response.status === 201) {
+        toast.success("Entrada registrada com sucesso")
+      } else {
+        toast.error("Prontuario invalido!");
+      }
+    } catch (error) {
+      toast.error("Prontuario invalido!");
+    }
   };
-  const history = useNavigate();
+  
+
 
 
   return (
@@ -44,7 +64,7 @@ function Entrar() {
 </div>  
 
   <div className='col-user-entrar'>
-    <input type="text" className="form-control-entrar" placeholder="Prontuario ou CPF" name="cb_cpf" onChange={valorEntrada}></input>
+    <input type="text" className="form-control-entrar" placeholder="Prontuario ou CPF" name="prontuario" onChange={valorEntrada}></input>
   </div>
 
   
@@ -83,7 +103,7 @@ function Entrar() {
   </div>
 
  <div className='col-camera-entrar'>
-    <button className="button-camera-entrar" type='button'> <IoQrCodeOutline/>  Ler QRcode  </button>
+    <button className="button-camera-entrar" type='button' onClick={()=> history('/Leitor')}> <IoQrCodeOutline/>  Ler QRcode  </button>
  </div>
 
 <div className='line-button-entrar'>
@@ -100,6 +120,7 @@ function Entrar() {
 </form>
 
     </div>
+
   );
 }
 
