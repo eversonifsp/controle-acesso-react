@@ -17,6 +17,9 @@ function Entrar() {
   const [valor, setValor] = useState({
     prontuario: "",
   });
+
+  const [registrado, setRegistrado] = useState('registrado')
+
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
