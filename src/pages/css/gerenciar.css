@@ -1,0 +1,69 @@
+header{
+  overflow: hidden;
+  width: 100%;
+  top: 0px;
+  z-index: 100;
+}
+  
+  .line-gerenciar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+  }
+
+.col-gerenciar{
+  width: 55%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1.5rem 2rem 0rem 2rem;
+}
+
+.col-gerenciar-logo{
+    width: 45%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1.5rem 2rem 0rem 2rem;
+}
+
+.container-usuario{
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+table{
+  display: block;
+  padding: 0.5rem;
+  border-collapse: collapse;
+}
+
+
+th{
+  padding: 0.5rem 3rem 0.5rem 3rem;
+}
+
+td{
+  border: 1px solid;
+}
+
+th h2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 18px ;
+}
+
+td p{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
