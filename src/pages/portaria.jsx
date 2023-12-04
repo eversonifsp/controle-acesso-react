@@ -12,8 +12,8 @@ const Portaria = () => {
     if (token) {
       history("/entrada");
     } else {
-        toast.error("Usuario não autenticado. Redirecionando para o login");
-        history("/login")
+      toast.error("Usuario não autenticado. Redirecionando para o login");
+      history("/login");
     }
   };
 
@@ -21,8 +21,8 @@ const Portaria = () => {
     if (token) {
       history("/saida");
     } else {
-        toast.error("Usuario não autenticado. Redirecionando para o login");
-        history("/login")
+      toast.error("Usuario não autenticado. Redirecionando para o login");
+      history("/login");
     }
   };
   return (
