@@ -35,41 +35,31 @@ function Gerenciar() {
 
     <div className="container-usuario">
 
-<div className="usuario">
+      <table>
+          <thead>
+            <tr>
+              <th> <h2>Prontuário</h2> </th>
+              <th><h2>Nome</h2></th>
+              <th><h2>Telefone</h2></th>
+              <th><h2>E-mail</h2></th>
+              <th><h2>Tipo</h2></th>
+              <th><h2>Ações</h2></th>
+            </tr>
+          </thead>
 
-      <div className="line-usuario">
-          <div className="col-prontuario-usuario">
-              <p><strong>Protuário/CPF:</strong> CB000000X </p>
-          </div>
-      </div>
+        <tbody>
+          <tr>
+              <td> <p> CB000000X </p> </td>
+              <td> <p> Ronaldo Fenômeno </p> </td>
+              <td> <p>13 000000000 </p> </td>
+              <td> <p>ifsp@email.com</p> </td>
+              <td> <p>ADM</p> </td>
+              <td> <p>Alterar/Excluir</p> </td>
+          </tr>
+        </tbody>
+      </table>
 
-      <div className="line-usuario">
-          <div className="col-name-usuario">
-              <p><strong>Nome:</strong> Ronaldo Gaúcho </p>
-          </div>
-        </div>
-
-      <div className="line-usuario">
-          <div className="col-telefone-usuario">
-              <p> <strong>Telefone:</strong> 13 000000000 </p>
-          </div>
-        </div>
-
-      <div className="line-usuario">
-          <div className="col-email-usuario">
-              <p> <strong>E-mail:</strong>  ifsp@email.com  </p>
-          </div>
-        </div>
-
-      <div className="line-usuario">
-          <div className="col-tipo-usuario">
-              <p> <strong>Tipo de Usuário:</strong> Portas </p>
-          </div>
-        </div>
-        
-    
     </div>
-</div>
     </main>
 
     <footer></footer>

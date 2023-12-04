@@ -30,34 +30,40 @@ header{
   padding: 1.5rem 2rem 0rem 2rem;
 }
 
-.container-usuarios{
+.container-usuario{
   padding: 2rem;
-}
-
-.line-usuario{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.col-name-usuario,
-.col-prontuario-usuario,
-.col-telefone-usuario,
-.col-email-usuario,
-.col-tipo-usuario{
-  padding: 1rem 0rem 0.5rem 1rem;
+table{
+  display: block;
+  padding: 0.5rem;
+  border-collapse: collapse;
 }
 
-.usuario{
-  margin: auto;
-  border-radius: 10px;
-  background: #FFF;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(2px);
-  min-height: 30vh;
-  max-width: 300px;
-  width: 100%;
+
+th{
+  padding: 0.5rem 3rem 0.5rem 3rem;
 }
 
-.line-geral{
+td{
+  border: 1px solid;
+}
+
+th h2{
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 18px ;
+}
+
+td p{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
 }
