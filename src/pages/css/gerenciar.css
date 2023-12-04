@@ -39,7 +39,7 @@ header{
 }
 
 table{
-  display: block;
+
   padding: 0.5rem;
   border-collapse: collapse;
 }
@@ -58,6 +58,7 @@ th h2{
   flex-direction: row;
   justify-content: center;
   font-size: 18px ;
+  width: 5rem;
 }
 
 td p{
@@ -66,4 +67,85 @@ td p{
   justify-content: center;
   align-items: center;
   font-size: 15px;
+  padding: 0rem 0.2rem 0rem 0.2rem;
+}
+
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;            /* altura do rodapé */
+}
+
+.line-button-gerenciar{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1.5rem 2rem 1rem 2rem;
+}
+
+.button-criar{
+  background-color:#00ee98;
+  border-radius: 5px;
+  height: 35px;
+  width: 100px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
+.button-criar:hover{
+  background-color: #00cd82;
+  box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
+
+.button-voltar-gerenciar{
+  background-color: transparent;
+  border-radius: 5px;
+  height: 35px;
+  width: 100px;
+  border: none;
+  color:#00ee98;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+ 
+}
+
+.button-voltar-gerenciar:hover{
+  color: #FFF;
+  background-color: #00cd82;
+  box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
+
+@media only screen and (max-width: 1024px) {
+  
+  .container-usuario{
+    display: block;
+    overflow-x: auto;
+  }
+
+
+
+}
+
+@media only screen and (max-width: 720px){
+  
+  .line-button-gerenciar{
+    justify-content: space-between;
+    padding: 2rem 1rem 1rem 1rem; ;
+  }
 }
