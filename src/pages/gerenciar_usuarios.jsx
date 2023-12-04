@@ -56,13 +56,38 @@ function Gerenciar() {
               <td> <p>ADM</p> </td>
               <td> <p>Alterar/Excluir</p> </td>
           </tr>
+
+          <tr>
+              <td> <p> CB000000X </p> </td>
+              <td> <p> Romário </p> </td>
+              <td> <p>13 000000000 </p> </td>
+              <td> <p> RomarioGAmes@email.com</p> </td>
+              <td> <p>Porteiro</p> </td>
+              <td> <p>Alterar/Excluir</p> </td>
+          </tr>
+
         </tbody>
       </table>
 
     </div>
+
+
+   
     </main>
 
-    <footer></footer>
+    <footer>
+
+    <div className='line-button-gerenciar'>
+  <div className='col-button-criar'>
+      <button className='button-criar' type='submit'> Criar Usuário</button>
+  </div>
+
+  <div className='col-button-voltar-gerenciar'>
+      <button className='button-voltar-gerenciar' type='button'> <IoArrowBackCircle /> Voltar</button>
+  </div>
+</div>
+
+    </footer>
    </fragment>
   );
 }
