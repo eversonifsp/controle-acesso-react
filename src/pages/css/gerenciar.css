@@ -148,4 +148,8 @@ footer {
     justify-content: space-between;
     padding: 2rem 1rem 1rem 1rem; ;
   }
+
+  footer{
+    height: 7rem;
+  }
 }
