@@ -7,8 +7,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import axios from 'axios';
-import loginUs from './login';
-import Login from './login';
+
+import apiClient from '../config/apiClient';
 function Entrar() {
   
   const storedToken = localStorage.getItem("token");
@@ -26,7 +26,7 @@ function Entrar() {
     try {      
       console.log(storedToken)
       
-      const response = axios.post(`http://127.0.0.1:3001/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
+      const response = apiClient.post(`/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
       {
         "tipo":"entrada"
       },
@@ -91,7 +91,7 @@ function Entrar() {
                   <input type="radio" className="form-radio" name="opcao" id="opc1" value="registrado"></input>
                   <label for="opc1" className='reg'>  Registrado</label>
           </div>
-  </div>
+      </div>
 
   <div className='line-line-radio'>
           <div className="col-nao-registrado">   

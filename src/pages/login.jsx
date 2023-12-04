@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
+import apiClient from "../config/apiClient";
 function Login() {
 
   const history = useNavigate();
@@ -21,7 +22,7 @@ function Login() {
     e.preventDefault();
     console.log(valor);
     try {
-      const response = await axios.post("http://localhost:3001/login", {
+      const response = await apiClient.post("/login", {
         usuario: {
           prontuario: valor.prontuario,
           password: valor.password,

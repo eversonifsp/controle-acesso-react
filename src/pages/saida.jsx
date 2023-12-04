@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import axios from 'axios';
+import apiClient from '../config/apiClient';
 
 function Saida() {
   const storedToken = localStorage.getItem("token");
@@ -34,7 +35,7 @@ function Saida() {
       
       console.log(storedToken)
       
-      const response = await axios.post(`http://127.0.0.1:3001/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
+      const response = await apiClient.post(`/registro_acesso_usuarios?prontuario=${valor.prontuario}`, 
       {
         "tipo":"saida"
       },
