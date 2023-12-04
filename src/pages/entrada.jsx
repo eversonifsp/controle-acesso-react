@@ -28,7 +28,7 @@ function Entrar() {
     try {
       console.log(storedToken);
 
-      const response = apiClient.post(
+      const response = await apiClient.post(
         `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
         {
           tipo: "entrada",
@@ -41,8 +41,6 @@ function Entrar() {
       console.log(valor.prontuario);
       if (response.status === 201) {
         toast.success("Entrada registrada com sucesso");
-      } else {
-        toast.error("Prontuario invalido!");
       }
     } catch (error) {
       toast.error("Prontuario invalido!");

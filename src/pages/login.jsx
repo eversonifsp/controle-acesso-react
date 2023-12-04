@@ -10,18 +10,25 @@ import apiClient from "../config/apiClient";
 function Login() {
   const history = useNavigate();
 
+  // monitorsa valor do prontuario e password
   const [valor, setValor] = useState({
     prontuario: "",
     password: "",
   });
+  
+  // passar valor dos inputs para a const "valor"
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
+  // meotodo de login e outros
   const loginUs = async (e) => {
+    //impede o reload da pagina ao finalizar a digitação do input
     e.preventDefault();
-    console.log(valor);
+    // tenta fazer a requisição para api
     try {
+      // define rota e metodo de requisição do login
       const response = await apiClient.post("/login", {
+        // envia para a API os valores dos campos
         usuario: {
           prontuario: valor.prontuario,
           password: valor.password,
@@ -30,17 +37,17 @@ function Login() {
       // Captura o token
       const token = response.headers.authorization;
       // Captura o tipo de usuario
-      const userType = response.data;
+      const userType = response.data.tipo;
 
+      // se houver sucesso segue o codigo
       if (response.status === 200) {
         // Armazena no localStorage
         localStorage.setItem("token", token);
-        console.log("Token:", token);
-        console.log("Tipo do usuario:", userType);
-        console.log("Login bem-sucedido!");
-
+        // passa o token do localStorage para uma constante
         const storedToken = localStorage.getItem("token");
-        if (storedToken && (userType === "admin" || userType === "porteiro")) {
+        console.log()
+        // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina 
+        if (storedToken && (userType == "admin" || userType == "porteiro")) {
           history("/portaria");
         } else {
           toast.error("Usuario não autorizado!");
