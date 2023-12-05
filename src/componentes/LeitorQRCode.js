@@ -1,25 +1,29 @@
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 
-const LeitorQRCode = (props) => {
-  const [data, setData] = useState('No result');
-    return (
-      <>
-        <QrReader
-          onResult={(result, error) => {
-            if (!!result) {
-              setData(result?.text);
-            }
-  
-            if (!!error) {
-              console.info(error);
-            }
-          }}
-          style={{ width: '100%' }}
-        />
-        <p>{data}</p>
-      </>
-    );
+const Read = (props) => {
+  const [setData] = useState('No result');
+
+  return (
+    <>
+      <QrReader
+        onResult={(result, error) => {
+          if (!!result) {
+            alert(`Prontuário: ${result.text}\nAluno liberado!`);
+            setData(result.text);
+          }
+
+          if (!!error) {
+            console.info(error);
+          }
+        }}
+        constraints={{
+          facingMode: 'environment'
+        }}
+        style={{ width: '100%' }}
+      />
+    </>
+  );
 };
 
-export default LeitorQRCode;
+export default Read;
