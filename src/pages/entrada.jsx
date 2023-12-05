@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
 
 import apiClient from "../config/apiClient";
 function Entrar() {
@@ -18,7 +17,7 @@ function Entrar() {
     prontuario: "",
   });
 
-  const [registrado, setRegistrado] = useState('registrado')
+  const [registrado, setRegistrado] = useState("registrado");
 
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
