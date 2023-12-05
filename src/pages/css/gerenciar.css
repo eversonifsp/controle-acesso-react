@@ -44,7 +44,6 @@ table{
   border-collapse: collapse;
 }
 
-
 th{
   padding: 0.5rem 3rem 0.5rem 3rem;
 }
@@ -70,6 +69,153 @@ td p{
   padding: 0rem 0.2rem 0rem 0.2rem;
 }
 
+td .btn-modal{
+  background-color: transparent;
+  color: #ffee01;
+  font-weight: 500;
+  border-color: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0rem 0.2rem 0rem 0.2rem;
+}
+
+.modal-user{
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-usuario{
+  margin: 0 auto;
+  margin-top: 5%;
+  max-width: 380px;
+  background-color: #eee;
+  padding: 0;
+  box-shadow: 0 0 2px white;
+  border-radius: 7px;
+}
+
+.modal-user-header, .modal-user-body, .modal-user-footer {
+  padding: 1rem;
+}
+
+.modal-user-body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #838383;
+}
+
+.col-user-a, 
+.col-tel-a,
+.col-email-a,
+.col-tipo-a{
+  padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+
+.form-control-a {
+  padding: 5px;
+  margin: 5px 0;
+  outline: none;
+  height: 35px;
+  width: 100% ;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #ADADAD;
+  background-color: white;
+  color: #757575;
+  font-size: 15px;
+}
+
+.form-control-a:hover,.form-control-a:focus,.form-control-a:active {
+  border-color: transparent;
+  border-bottom: 2px solid #00ee98;
+  border-radius: 0;
+}
+
+.line-button-alterar{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1.5rem 2rem 1rem 2rem;
+}
+
+.btn-alterar{
+  cursor: pointer;
+  background-color:#00ee98;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0rem 0.2rem 0rem 0.2rem;
+}
+
+.btn-alterar:hover{
+  background-color: #00cd82;
+  box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
+
+.btn-excluir{
+  cursor: pointer;
+  background-color:#FF0202;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+  border: none;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 0rem 0.2rem 0rem 0.2rem;
+}
+
+.btn-excluir:hover{
+  background-color: #ba0202;
+  box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
+
+.btn-modal-user { 
+  background-color: transparent;
+  color: #FF0202;
+  border-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  height: 25px;
+  width: 80px;
+  border: none;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-modal-user:hover { 
+  color: #FFF;
+  background-color:  #ba0202;
+  box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
 
 footer {
   position: absolute;
@@ -137,9 +283,7 @@ footer {
     display: block;
     overflow-x: auto;
   }
-
-
-
+  
 }
 
 @media only screen and (max-width: 720px){
