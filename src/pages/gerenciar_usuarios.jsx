@@ -4,24 +4,13 @@ import { FaUserPlus } from "react-icons/fa6";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
+/*import Modal from "../componentes/Modal"*/;
 
-function Gerenciar() {
-  const [valor, setValor] = useState({
-    nome: "",
-    cpf: "",
-    email: "",
-    telefone: "",
-  });
-  const valorEntrada = (e) =>
-    setValor({ ...valor, [e.target.name]: e.target.value });
+function Gerenciar () {
+ 
+    const [isModalVisible, setIsModalVisible] =useState(false);
 
-  const AddVisitante = async (e) => {
-    // Bloquear o recarregamento da página
-    e.preventDefault();
-    {console.log(valor);}
-  };
-
-  return (
+    return (
     <fragment>
 <header>
     <div className="line-gerenciar">
@@ -54,7 +43,7 @@ function Gerenciar() {
               <td> <p>13 000000000 </p> </td>
               <td> <p>ifsp@email.com</p> </td>
               <td> <p>ADM</p> </td>
-              <td> <p>Alterar/Excluir</p> </td>
+              <td> <button class="btn-modal" onClick={() => setIsModalVisible(true)} >Alterar|Excluir</button> </td>
           </tr>
 
           <tr>
@@ -71,13 +60,58 @@ function Gerenciar() {
 
     </div>
 
+    
 
+   {isModalVisible ? 
    
-    </main>
+<div id="dv-modal-user" class="modal-user">
+        <div class="modal-usuario">
 
-    <footer>
+          <div class="modal-user-header">
+                <h2>Alterar Cadastro</h2>
+            </div>
 
-    <div className='line-button-gerenciar'>
+            <div class="modal-user-body">
+
+            <div className='col-user-a'>
+                <input type="text" name="usuario"className="form-control-a" placeholder="Usuário"></input>
+            </div>
+
+            <div className='col-tel-a'>
+                <input type="text" name="tel"className="form-control-a" placeholder="Telefone"></input>
+            </div>
+
+            <div className='col-email-a'>
+                <input type="text" name="email"className="form-control-a" placeholder="E-mail"></input>
+            </div>
+
+            <div className='col-tipo-a'>
+                <input type="text" name="tipo"className="form-control-a" placeholder="Tipo"></input>
+            </div>
+
+          <div className="line-button-alterar">
+            <div className='col-btn-alterar'>
+                <button className="btn-alterar"> Alterar </button>
+            </div>
+
+            <div className='col-btn-excluir'>
+                <button className="btn-excluir"> Excluir </button>
+            </div>
+          </div>
+
+            </div>  
+
+            <div class="modal-user-footer">
+                <button class="btn-modal-user" onClick={() => setIsModalVisible(false)}> Fechar </button>
+            </div>
+
+          </div>    
+    </div>
+   
+   
+   :null} 
+
+<div className='line-button-gerenciar'>
   <div className='col-button-criar'>
       <button className='button-criar' type='submit'> Criar Usuário</button>
   </div>
@@ -86,6 +120,11 @@ function Gerenciar() {
       <button className='button-voltar-gerenciar' type='button'> <IoArrowBackCircle /> Voltar</button>
   </div>
 </div>
+    </main>
+
+    <footer>
+
+  
 
     </footer>
    </fragment>
