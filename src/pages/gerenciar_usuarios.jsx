@@ -4,26 +4,13 @@ import { FaUserPlus } from "react-icons/fa6";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
+/*import Modal from "../componentes/Modal"*/;
 
-function Gerenciar() {
-  const [valor, setValor] = useState({
-    nome: "",
-    cpf: "",
-    email: "",
-    telefone: "",
-  });
-  const valorEntrada = (e) =>
-    setValor({ ...valor, [e.target.name]: e.target.value });
+function Gerenciar () {
+ 
+    const [isModalVisible, setIsModalVisible] =useState(false);
 
-  const AddVisitante = async (e) => {
-    // Bloquear o recarregamento da página
-    e.preventDefault();
-    {
-      console.log(valor);
-    }
-  };
-
-  return (
+    return (
     <fragment>
       <header>
         <div className="line-gerenciar">
@@ -69,83 +56,48 @@ function Gerenciar() {
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td>
-                  {" "}
-                  <p> CB000000X </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p> Ronaldo Fenômeno </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>13 000000000 </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>ifsp@email.com</p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>ADM</p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>Alterar/Excluir</p>{" "}
-                </td>
-              </tr>
+        <tbody>
+          <tr>
+              <td> <p> CB000000X </p> </td>
+              <td> <p> Ronaldo Fenômeno </p> </td>
+              <td> <p>13 000000000 </p> </td>
+              <td> <p>ifsp@email.com</p> </td>
+              <td> <p>ADM</p> </td>
+              <td> <p>Alterar/Excluir</p> </td>
+          </tr>
 
-              <tr>
-                <td>
-                  {" "}
-                  <p> CB000000X </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p> Romário </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>13 000000000 </p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p> RomarioGAmes@email.com</p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>Porteiro</p>{" "}
-                </td>
-                <td>
-                  {" "}
-                  <p>Alterar/Excluir</p>{" "}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </main>
+          <tr>
+              <td> <p> CB000000X </p> </td>
+              <td> <p> Romário </p> </td>
+              <td> <p>13 000000000 </p> </td>
+              <td> <p> RomarioGAmes@email.com</p> </td>
+              <td> <p>Porteiro</p> </td>
+              <td> <p>Alterar/Excluir</p> </td>
+          </tr>
 
-      <footer>
-        <div className="line-button-gerenciar">
-          <div className="col-button-criar">
-            <button className="button-criar" type="submit">
-              {" "}
-              Criar Usuário
-            </button>
-          </div>
+        </tbody>
+      </table>
 
-          <div className="col-button-voltar-gerenciar">
-            <button className="button-voltar-gerenciar" type="button">
-              {" "}
-              <IoArrowBackCircle /> Voltar
-            </button>
-          </div>
-        </div>
-      </footer>
-    </fragment>
+    </div>
+
+
+   
+    </main>
+
+    <footer>
+
+    <div className='line-button-gerenciar'>
+  <div className='col-button-criar'>
+      <button className='button-criar' type='submit'> Criar Usuário</button>
+  </div>
+
+  <div className='col-button-voltar-gerenciar'>
+      <button className='button-voltar-gerenciar' type='button'> <IoArrowBackCircle /> Voltar</button>
+  </div>
+</div>
+
+    </footer>
+   </fragment>
   );
 }
 
