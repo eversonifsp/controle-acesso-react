@@ -9,6 +9,7 @@ import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
+import Leitor from './Leitor';
 
 const router = createBrowserRouter([
   {
@@ -20,11 +21,11 @@ const router = createBrowserRouter([
     element:<Login/> 
   },
   {
-    path:"entrar",
-    element: <Entrar/>
+    path:"entrada",
+    element: <Entrar />
   },
   {
-    path:"sair",
+    path:"saida",
     element: <Saida/>
   },
   {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
   {
     path:"gerenciar",
     element: <Gerenciar/>
-  }  
+  },
+  {
+    path: "leitor",
+    element: <Leitor/>
+  }
 
 ])
 
@@ -47,6 +52,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    
     <RouterProvider router={router}/>
+    
   </React.StrictMode>
 );
