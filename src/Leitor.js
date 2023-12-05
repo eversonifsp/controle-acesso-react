@@ -1,12 +1,12 @@
 import React from 'react';
-import LeitorQRCode from './componentes/LeitorQRCode';
+import Camera from './componentes/Camera';
 
-function App() {
+function Leitor() {
   return (
-    <div className="App">
-      <LeitorQRCode/>
+    <div>
+      <Camera />
     </div>
   );
 }
 
-export default App;
+export default Leitor;

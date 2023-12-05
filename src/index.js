@@ -9,7 +9,7 @@ import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
-
+import Leitor from './Leitor';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +40,11 @@ const router = createBrowserRouter([
   {
     path:"gerenciar",
     element: <Gerenciar/>
-  }  
+  },
+  {
+    path: "leitor",
+    element: <Leitor/>
+  }
 
 ])
 
