@@ -201,7 +201,7 @@ function Entrar() {
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/Leitor")}
+            onClick={() => history("/LeitorEntry")}
           >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}
