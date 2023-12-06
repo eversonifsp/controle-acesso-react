@@ -1,104 +1,72 @@
-import "./css/gerenciar.css";
-import { FaCamera } from "react-icons/fa";
-import { FaUserPlus } from "react-icons/fa6";
+import React, { useState } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
-import React, { useState } from "react";
-/*import Modal from "../componentes/Modal"*/;
+import Modal from "../componentes/Modal";
 
-function Gerenciar () {
- 
-    const [isModalVisible, setIsModalVisible] =useState(false);
+function Gerenciar() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [usuario, setUsers] = useState([]);
 
-    return (
-    <fragment>
-      <header>
-        <div className="line-gerenciar">
-          <div className="col-gerenciar">
-            {" "}
-            <h2>Gerenciar Usuários</h2>{" "}
-          </div>
-          <div className="col-gerenciar-logo">
-            {" "}
-            <img
-              src={logoif}
-              alt="Logo do Instituto Federal de Cubatão"
-              className="logoif"
-            />{" "}
-          </div>
-        </div>
-      </header>
+  /* Abrir o modal */
+  const openModal = () => {
+    setIsModalVisible(true);
+  };
 
-      <main>
-        <div className="container-usuario">
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  {" "}
-                  <h2>Prontuário</h2>{" "}
-                </th>
-                <th>
-                  <h2>Nome</h2>
-                </th>
-                <th>
-                  <h2>Telefone</h2>
-                </th>
-                <th>
-                  <h2>E-mail</h2>
-                </th>
-                <th>
-                  <h2>Tipo</h2>
-                </th>
-                <th>
-                  <h2>Ações</h2>
-                </th>
-              </tr>
-            </thead>
+  /* Fechar o modal */
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
-        <tbody>
-          <tr>
-              <td> <p> CB000000X </p> </td>
-              <td> <p> Ronaldo Fenômeno </p> </td>
-              <td> <p>13 000000000 </p> </td>
-              <td> <p>ifsp@email.com</p> </td>
-              <td> <p>ADM</p> </td>
-              <td> <p>Alterar/Excluir</p> </td>
+  /* Adiciona o usuário e fecha o modal */
+  const handleAddUsuario = (novoUsuario) => {
+    setUsers([...usuario, novoUsuario]);
+    closeModal();
+  };
+
+  /* Lógica para editar usuário */
+  const handleEditUsuario = (index) => {
+  };
+
+  /* Lógica para deletar usuário */
+  const handleDeleteUsuario = (index) => {
+  };
+
+  return (
+    <div>
+      <tbody>
+        {usuario.map((user, index) => (
+          <tr key={index}>
+            <td>
+              <p>{usario.prontuario}</p>
+            </td>
+            <td>
+              <p>{usario.nome}</p>
+            </td>
+            <td>
+              <p>{usario.telefone}</p>
+            </td>
+            <td>
+              <p>{usario.email}</p>
+            </td>
+            <td>
+              <p>{usario.tipo}</p>
+            </td>
+            <td>
+              <button onClick={() => handleEditUsuario(index)}>Editar</button>
+              <button onClick={() => handleDeleteUsuario(index)}>Excluir</button>
+            </td>
           </tr>
+        ))}
+      </tbody>
 
-          <tr>
-              <td> <p> CB000000X </p> </td>
-              <td> <p> Romário </p> </td>
-              <td> <p>13 000000000 </p> </td>
-              <td> <p> RomarioGAmes@email.com</p> </td>
-              <td> <p>Porteiro</p> </td>
-              <td> <p>Alterar/Excluir</p> </td>
-          </tr>
-
-        </tbody>
-      </table>
-
+      <Modal
+        isVisible={isModalVisible}
+        onClose={closeModal}
+        onSave={handleAddUsuario}
+      />
     </div>
-
-
-   
-    </main>
-
-    <footer>
-
-    <div className='line-button-gerenciar'>
-  <div className='col-button-criar'>
-      <button className='button-criar' type='submit'> Criar Usuário</button>
-  </div>
-
-  <div className='col-button-voltar-gerenciar'>
-      <button className='button-voltar-gerenciar' type='button'> <IoArrowBackCircle /> Voltar</button>
-  </div>
-</div>
-
-    </footer>
-   </fragment>
   );
 }
 
 export default Gerenciar;
+

@@ -1,26 +1,50 @@
-import React from "react";
- const Modal = () => {
+import React, { useState } from "react";
 
- /*   <div id="dv-modal-user" class="modal-user">
-        <div class="modal-usuario">
+ function Modal({ isVisible, onClose, onSave }) {
+  const [novoUsuario, setNovoUsuario] = useState({
+    prontuario: "",
+    nome: "",
+    telefone: "",
+    email: "",
+    tipo: "",
+  });
 
-          <div class="modal-user-header">
-                <h1></h1>
-            </div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNovoUsuario({ ...novoUsuario, [name]: value });
+  };
 
-            <div class="modal-user-body">
-               
-            </div>  
+  /* Salvar novo usuário */
+  const handleSave = () => {
+    onSave(novoUsuario);
+  };
 
-            <div class="modal-user-footer">
-                <button class="btn-modal-user" onclick=""> Fechar </button>
-            </div>
+  return (
+    <div style={{ display: isVisible ? "block" : "none" }}>
+      <div>
+        <label>Prontuário</label>
+        <input type="text" name="prontuario" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Nome</label>
+        <input type="text" name="nome" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Telefone</label>
+        <input type="text" name="telefone" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="text" name="email" onChange={handleChange} />
+      </div>
+      <div>
+        <label>Tipo</label>
+        <input type="text" name="tipo" onChange={handleChange} />
+      </div>
+      <button onClick={handleSave}>Salvar</button>
+      <button onClick={onClose}>Fechar</button>
+    </div>
+  );
+}
 
-          </div>    
-    </div> */
-
-    <h1>Modal</h1>
-
- }
-
- export default Modal;
+export default Modal;
