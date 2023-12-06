@@ -9,36 +9,67 @@ import apiClient from "../config/apiClient";
 
 function Registro() {
   const valorEntrada = (e) =>
-  setValor({ ...valor, [e.target.name]: e.target.value });
+    setValor({ ...valor, [e.target.name]: e.target.value });
 
   const [valor, setValor] = useState({
-    prontuario: "",})
+    prontuario: "",
+  });
 
   const history = useNavigate();
   const [registros, setRegistros] = useState([]);
+  const [filtro, setFiltro] = useState(["user"]);
+
   const buscarRegistros = async (e) => {
     e.preventDefault();
     const storedToken = localStorage.getItem("token");
-    try {
-      console.log(storedToken)
-      const response = await apiClient.get(`/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
-        {
-          headers: { Authorization: storedToken },
-        }
+
+    if (filtro === "user") {
+      try {
+        console.log(storedToken);
+        const response = await apiClient.get(
+          `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
+          {
+            headers: { Authorization: storedToken },
+          }
         );
-      registros = setRegistros(response.data)
-      console.log(registros)
-      const date = registros.created_at
-      
+        registros = setRegistros(response.data);
+        console.log(registros);
+        const date = registros.created_at;
       } catch (error) {
         console.error("Erro ao obter registros:", error);
       }
-    };
-
+    } else if (filtro === "data") {
+      try {
+        console.log(storedToken);
+        const response = await apiClient.get(
+          `/registro_acesso_usuarios_datas=${valor.created_at}`,
+          {
+            headers: { Authorization: storedToken },
+          }
+        );
+        registros = setRegistros(response.data);
+        console.log(registros);
+        const date = registros.created_at;
+      } catch (error) {
+        console.error("Erro ao obter registros:", error);
+      }
+    }
+  };
 
   const returnAdm = () => {
     history("/adm");
   };
+
+  const data = new Date(registro.created_at);
+  const dataFormatada = formatoData.format(data);
+  const formatoData = new Intl.DateTimeFormat("pt-BR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
 
   return (
     <fragment>
@@ -71,6 +102,8 @@ function Registro() {
               name="opcao"
               id="opc1"
               value="user"
+              onChange={(e) => setFiltro(e.target.value)}
+              checked={filtro === "user"}
             ></input>
             <label for="opc1" className="tipo">
               {" "}
@@ -86,6 +119,8 @@ function Registro() {
               name="opcao"
               id="opc2"
               value="data"
+              onChange={(e) => setFiltro(e.target.value)}
+              checked={filtro === "data"}
             ></input>
             <label for="opc2" className="tipo">
               {" "}
@@ -95,23 +130,26 @@ function Registro() {
         </div>
 
         <div className="line-input">
-        <div className="col-user-entrar">
-          <input
-            type="text"
-            className="form-control-entrar"
-            placeholder="Prontuario ou CPF"
-            name="prontuario"
-            onChange={valorEntrada}
-          ></input>
-        </div>
+          <div className="col-user-entrar">
+            <input
+              type="text"
+              className="form-control-entrar"
+              placeholder="Prontuario ou CPF"
+              name="prontuario"
+              onChange={valorEntrada}
+            ></input>
+          </div>
 
           <div className="col-filtrar">
-            <button className="filtro" onClick={buscarRegistros}> Filtrar </button>
+            <button className="filtro" onClick={buscarRegistros}>
+              {" "}
+              Filtrar{" "}
+            </button>
           </div>
         </div>
 
-        <div className="container-registros">
-          <table>
+        <div className="table-container">
+          <table className="table">
             <thead>
               <tr>
                 <th>
@@ -133,7 +171,7 @@ function Registro() {
                 <tr>
                   <td>{registro.usuario.prontuario}</td>
                   <td>{registro.usuario.nome}</td>
-                  <td>{registro.created_at.formart("MM/DD/YYYY")}</td>
+                  <td>{dataFormatada}</td>
                   <td>{registro.tipo}</td>
                 </tr>
               ))}
@@ -160,4 +198,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default Registro;

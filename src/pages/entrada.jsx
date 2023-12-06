@@ -149,6 +149,7 @@ function Entrar() {
           </div>
         )}
 
+          {/* radios button */}
         <div className="line-radio">
           <div className="line-line-radio">
             <div className="col-registrado">
