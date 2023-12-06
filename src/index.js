@@ -9,7 +9,8 @@ import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
-import Leitor from './Leitor';
+import Leitor from './Leitor'
+import Cadastrar from './pages/cadastro';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "leitor",
     element: <Leitor/>
+  },
+  {
+    path:"cadastrar",
+    element: <Cadastrar/>
   }
 
 ])
