@@ -42,7 +42,7 @@ function Registro() {
       try {
         console.log(storedToken);
         const response = await apiClient.get(
-          `/registro_acesso_usuarios_datas=${valor.created_at}`,
+          `/registro_acesso_usuarios?data=${valor.created_at}`,
           {
             headers: { Authorization: storedToken },
           }
@@ -59,6 +59,16 @@ function Registro() {
   const returnAdm = () => {
     history("/adm");
   };
+  const data = registros.created_at;
+  const formatoData = new Intl.DateTimeFormat("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+  const dataFormatada = formatoData.format(data);
+
 
   return (
     <fragment>
