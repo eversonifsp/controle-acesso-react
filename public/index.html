@@ -38,6 +38,7 @@
         var reg = $(this).val();                                
         if (reg == 'nao_registrado') {
             $("#campos").show();
+            $("#QRcode").hide();
 
            $(".form-control-entrar").css({
             height: "35px"
@@ -47,7 +48,8 @@
             padding: "0rem 1rem 0.5rem 1rem"
            });
        
-          }else{
+          }else if(reg == 'registrado'){
+            $("#QRcode").show();
            $("#campos").hide();
 
            $(".col-user-entrar").css({
