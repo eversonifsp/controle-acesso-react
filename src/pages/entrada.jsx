@@ -74,6 +74,22 @@ function Entrar() {
     } } 
   };
 
+
+  // const handleScan = (result, error) => {
+  //   if (!!result) {
+  //     alert("Prontuário: ${result}\nAluno liberado!");
+  //     setProntuario(result);
+  //   }
+
+  //   if (!!error) {
+  //     console.info(error);
+  //   }
+  // };
+
+
+
+
+
   return (
     <div className="container-entrar">
       <form className="form-entrar" onSubmit={registraEntrada}>
