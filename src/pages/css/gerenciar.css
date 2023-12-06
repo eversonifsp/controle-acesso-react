@@ -5,7 +5,7 @@ header{
   z-index: 100;
 }
   
-  .line-gerenciar{
+.line-gerenciar{
     display: flex;
     justify-content: space-evenly;
     align-items: center;

@@ -11,6 +11,8 @@ import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
 import Leitor from './Leitor';
 import { PrivateRoute } from './privateRoute';
+import Cadastrar from './pages/cadastro';
+import Registro from './pages/registro';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
   {
     path: "leitor",
     element: <PrivateRoute><Leitor/></PrivateRoute>
+  },
+  {
+    path:"cadastrar",
+    element: <PrivateRoute><Cadastrar/></PrivateRoute>
+  },
+  {
+    path:"registro",
+    element:  <PrivateRoute><Registro/></PrivateRoute>
   }
 
 ])
