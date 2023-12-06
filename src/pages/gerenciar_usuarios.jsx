@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import apiClient from "../config/apiClient";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Gerenciar() {
+  const history = useNavigate();
   const [usuarios, setUsuarios] = useState([]);
   const [novoUsuario, setNovoUsuario] = useState({
     prontuario: "",
@@ -12,6 +13,7 @@ function Gerenciar() {
     telefone: "",
     email: "",
     tipo: "",
+    password:"",
   });
 
   /* Consume a api buscando usuários */
@@ -32,18 +34,22 @@ function Gerenciar() {
   /* Adiciona o usuário */
   const handleAddUsuario = async () => {
     try {
-        const response = await apiClient.post("/usuarios", novoUsuario);
+      const storedToken = localStorage.getItem("token");
+
+      const response = await apiClient.post("/usuarios", novoUsuario, {
+          headers: { Authorization: storedToken },
+        });
 
       if (response.status === 201) {
-        // Atualiza a lista de usuários após a adição bem-sucedida
-        fetchUsuarios();
-        // Limpa os dados do novo usuário
+        fetchUsuarios(storedToken);
         setNovoUsuario({
+          cpf: "",
           prontuario: "",
           nome: "",
           telefone: "",
           email: "",
           tipo: "",
+          password:"",
         });
       } else {
         console.error("Erro ao adicionar usuário");
@@ -69,11 +75,11 @@ function Gerenciar() {
       <main>
         <div className="container-usuario">
           <form>
-            <label>Prontuário:</label>
+            <label>CPF/Prontuário:</label>
             <input
               type="text"
-              value={novoUsuario.prontuario}
-              onChange={(e) => setNovoUsuario({ ...novoUsuario, prontuario: e.target.value })}
+              value={novoUsuario.cpf}
+              onChange={(e) => setNovoUsuario({ ...novoUsuario, cpf: e.target.value })}
             />
 
             <label>Nome:</label>
@@ -85,14 +91,14 @@ function Gerenciar() {
 
             <label>Telefone:</label>
             <input
-              type="text"
+              type="tel"
               value={novoUsuario.telefone}
               onChange={(e) => setNovoUsuario({ ...novoUsuario, telefone: e.target.value })}
             />
 
             <label>Email:</label>
             <input
-              type="text"
+              type="email"
               value={novoUsuario.email}
               onChange={(e) => setNovoUsuario({ ...novoUsuario, email: e.target.value })}
             />
@@ -143,7 +149,12 @@ function Gerenciar() {
             </button>
           </div>
           <div className="col-button-voltar-gerenciar">
-            <button className="button-voltar-gerenciar" type="button">
+            <button
+              className="button-voltar-entrar"
+              type="button"
+              onClick={() => history("/adm")}
+            >
+              {" "}
               <IoArrowBackCircle /> Voltar
             </button>
           </div>
@@ -154,3 +165,4 @@ function Gerenciar() {
 }
 
 export default Gerenciar;
+
