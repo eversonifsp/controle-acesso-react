@@ -5,9 +5,16 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app"/>
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <script src="https://code.jquery.com/jquery-3.2.0.min.js"  integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.0.min.js"
+      integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I="
+      crossorigin="anonymous"
+    ></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -27,46 +34,42 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-   
   </body>
 
   <!-- Script para o radio button do form entrar-->
   <script type="text/javascript">
-  $(document).ready(function(){
-    $("#campos").hide();
-    $("input[name$='opcao']").click(function(){
-        var reg = $(this).val();                                
-        if (reg == 'nao_registrado') {
-            $("#campos").show();
-            $("#QRcode").hide();
+    $(document).ready(function () {
+      $("#campos").hide();
+      $("input[name$='opcao']").click(function () {
+        var reg = $(this).val();
+        if (reg == "nao_registrado") {
+          $("#campos").show();
+          $("#QRcode").hide();
 
-           $(".form-control-entrar").css({
-            height: "35px"
-           });
+          $(".form-control-entrar").css({
+            height: "35px",
+          });
 
-           $(".line-entrar").css({
-            padding: "0rem 1rem 0.5rem 1rem"
-           });
-       
-          }else if(reg == 'registrado'){
-            $("#QRcode").show();
-           $("#campos").hide();
+          $(".line-entrar").css({
+            padding: "0rem 1rem 0.5rem 1rem",
+          });
+        } else if (reg == "registrado") {
+          $("#QRcode").show();
+          $("#campos").hide();
 
-           $(".col-user-entrar").css({
-              padding: "1.5rem 2rem 0rem 2rem"
-           });
+          $(".col-user-entrar").css({
+            padding: "1.5rem 2rem 0rem 2rem",
+          });
 
-           $(".form-control-entrar").css({
-            height: "45px"
-           });
+          $(".form-control-entrar").css({
+            height: "45px",
+          });
 
-           $(".line-entrar").css({
-            padding: "0rem 1rem 3rem 1rem"
-           });
-
+          $(".line-entrar").css({
+            padding: "0rem 1rem 3rem 1rem",
+          });
         }
+      });
     });
-});
-</script>
-
+  </script>
 </html>

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from './App';
-import { RouterProvider, createBrowserRouter,BrowserRouter,Route,Routes } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, BrowserRouter, Route, Routes } from 'react-router-dom';
 import Entrar from './pages/entrada';
 import Login from './pages/login';
 import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
-import Leitor from './Leitor';
+import LeitorExit from './LeitorExit';
+import LeitorEntry from './LeitorEntry';
 import { PrivateRoute } from './privateRoute';
 import Cadastrar from './pages/cadastro';
 import Registro from './pages/registro';
@@ -45,8 +45,12 @@ const router = createBrowserRouter([
     element: <PrivateRoute><Gerenciar/></PrivateRoute>
   },
   {
-    path: "leitor",
-    element: <PrivateRoute><Leitor/></PrivateRoute>
+    path: "leitorEntry",
+    element: <PrivateRoute><LeitorEntry/></PrivateRoute>
+  },
+  {
+    path: "leitorExit",
+    element: <PrivateRoute><LeitorExit/></PrivateRoute>
   },
   {
     path:"cadastrar",
@@ -56,7 +60,6 @@ const router = createBrowserRouter([
     path:"registro",
     element:  <PrivateRoute><Registro/></PrivateRoute>
   }
-
 ])
 
 

@@ -3,13 +3,12 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { FaCamera } from "react-icons/fa6";
-
-
 import apiClient from "../config/apiClient";
+
 function Entrar() {
   const storedToken = localStorage.getItem("token");
   console.log(storedToken);
@@ -18,10 +17,10 @@ function Entrar() {
   const [valor, setValor] = useState({
     prontuario: "",
     cpf: "",
-    nome:"",
-    telefone:"",
-    email:"",
-    foto:"",
+    nome: "",
+    telefone: "",
+    email: "",
+    foto: "",
   });
 
   const [registrado, setRegistrado] = useState("registrado");
@@ -33,49 +32,52 @@ function Entrar() {
     e.preventDefault();
 
     if (registrado == "nao_registrado") {
-    try {
-      console.log(storedToken);
+      try {
+        console.log(storedToken);
 
-      const response = await apiClient.post(
-        `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
-        {
-          tipo: "entrada",
-        },
-        {
-          headers: { Authorization: storedToken },
+        const response = await apiClient.post(
+          `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
+          {
+            tipo: "entrada",
+          },
+          {
+            headers: { Authorization: storedToken },
+          }
+        );
+
+        console.log(valor.prontuario);
+        if (response.status === 201) {
+          toast.success("Entrada registrada com sucesso");
         }
-      );
-
-      console.log(valor.prontuario);
-      if (response.status === 201) {
-        toast.success("Entrada registrada com sucesso");
+      } catch (error) {
+        toast.error("Prontuario invalido!");
       }
-    } catch (error) {
-      toast.error("Prontuario invalido!");
+    } else if (registrado == "registrado") {
+      try {
+        // define rota e metodo de requisição do cadastro
+        const response = await apiClient.post(
+          "/visitantes",
+          {
+            // envia para a API os valores dos campos
+            cpf: valor.cpf,
+            nome: valor.nome,
+            telefone: valor.telefone,
+            email: valor.email,
+          },
+          {
+            headers: { Authorization: storedToken },
+          }
+        );
+
+        // se houver sucesso segue o codigo
+        if (response.status === 201) {
+          toast.success("Cadastro e entrada realizados com sucesso");
+        }
+      } catch (error) {
+        toast.error("Cadastro Falhou!");
+      }
     }
-  } else if (registrado == "registrado"){
-    try {
-      // define rota e metodo de requisição do cadastro
-      const response = await apiClient.post("/visitantes", {
-        // envia para a API os valores dos campos
-          cpf: valor.cpf, 
-          nome: valor.nome,
-          telefone: valor.telefone,
-          email: valor.email
-      },
-      {
-        headers: { Authorization: storedToken },
-      });
-
-      // se houver sucesso segue o codigo
-      if (response.status === 201) {
-        toast.success("Cadastro e entrada realizados com sucesso");
-      }
-    } catch (error) {
-      toast.error("Cadastro Falhou!");
-    } } 
   };
-
 
   // const handleScan = (result, error) => {
   //   if (!!result) {
@@ -87,10 +89,6 @@ function Entrar() {
   //     console.info(error);
   //   }
   // };
-
-
-
-
 
   return (
     <div className="container-entrar">
@@ -183,13 +181,12 @@ function Entrar() {
               ></input>
               <label for="opc2" className="reg">
                 {" "}
-                 Registrado{" "}
+                Registrado{" "}
               </label>
             </div>
           </div>
-
         </div>
-        <div className="col-camera-entrar" id= "QRcode">
+        <div className="col-camera-entrar" id="QRcode">
           <button
             className="button-camera-entrar"
             type="button"
@@ -204,13 +201,12 @@ function Entrar() {
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/Leitor")}
+            onClick={() => history("/LeitorEntry")}
           >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}
           </button>
         </div>
-
 
         <div className="line-button-entrar">
           <div className="col-button-entrar">
@@ -218,7 +214,7 @@ function Entrar() {
               {" "}
               Registrar
             </button>
-          </div>  
+          </div>
 
           <ToastContainer />
           <div className="col-button-voltar-entrar">
@@ -231,7 +227,6 @@ function Entrar() {
               <IoArrowBackCircle /> Voltar
             </button>
           </div>
-
         </div>
       </form>
     </div>

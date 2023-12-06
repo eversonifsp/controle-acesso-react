@@ -46,7 +46,6 @@ function Login() {
         localStorage.setItem("token", token);
         // passa o token do localStorage para uma constante
         const storedToken = localStorage.getItem("token");
-        console.log();
         // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina
         if (storedToken && userType === "admin") {
           history("/adm");
