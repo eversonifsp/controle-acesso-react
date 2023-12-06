@@ -8,30 +8,33 @@ import "react-toastify/dist/ReactToastify.min.css";
 import apiClient from "../config/apiClient";
 
 function Registro() {
+  const valorEntrada = (e) =>
+  setValor({ ...valor, [e.target.name]: e.target.value });
+
+  const [valor, setValor] = useState({
+    prontuario: "",})
+
   const history = useNavigate();
   const [registros, setRegistros] = useState([]);
-  const storedToken = localStorage.getItem("token");
-
-  useEffect(() => {
-    const buscarRegistros = async () => {
-      try {
-        const response = await apiClient.get(
-          `/registro_acesso_usuarios?prontuario`,
-          {
-            headers: { Authorization: storedToken },
-          },
-          {
-            params: { prontuario: registros.prontuario },
-          }
+  const buscarRegistros = async (e) => {
+    e.preventDefault();
+    const storedToken = localStorage.getItem("token");
+    try {
+      console.log(storedToken)
+      const response = await apiClient.get(`/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
+        {
+          headers: { Authorization: storedToken },
+        }
         );
-        setRegistros(response.data);
+      registros = setRegistros(response.data)
+      console.log(registros)
+      const date = registros.created_at
+      
       } catch (error) {
         console.error("Erro ao obter registros:", error);
       }
     };
 
-    buscarRegistros();
-  }, []);
 
   const returnAdm = () => {
     history("/adm");
@@ -60,6 +63,7 @@ function Registro() {
         <div className="line-filtrar-por">
           <p>Filtrar por:</p>
 
+          {/* radio button para usuario */}
           <div className="por-user">
             <input
               type="radio"
@@ -74,6 +78,7 @@ function Registro() {
             </label>
           </div>
 
+          {/* radio button para data */}
           <div className="por-data">
             <input
               type="radio"
@@ -90,16 +95,18 @@ function Registro() {
         </div>
 
         <div className="line-input">
-          <div className="col-input">
-            <input
-              type="text"
-              className="input-control"
-              placeholder="Insira o Prontuário, CPF ou Data"
-            />
-          </div>
+        <div className="col-user-entrar">
+          <input
+            type="text"
+            className="form-control-entrar"
+            placeholder="Prontuario ou CPF"
+            name="prontuario"
+            onChange={valorEntrada}
+          ></input>
+        </div>
 
           <div className="col-filtrar">
-            <button className="filtro"> Filtrar </button>
+            <button className="filtro" onClick={buscarRegistros}> Filtrar </button>
           </div>
         </div>
 
@@ -117,21 +124,17 @@ function Registro() {
                   <h2>Data</h2>
                 </th>
                 <th>
-                  <h2>Entrada</h2>
-                </th>
-                <th>
-                  <h2>Saida</h2>
+                  <h2>tipo</h2>
                 </th>
               </tr>
             </thead>
             <tbody>
               {registros.map((registro) => (
                 <tr>
-                  <td>{registro.Prontuario}</td>
-                  <td>{registro.Nome}</td>
-                  <td>{registro.Data}</td>
-                  <td>{registro.Entrada}</td>
-                  <td>{registro.Saida}</td>
+                  <td>{registro.usuario.prontuario}</td>
+                  <td>{registro.usuario.nome}</td>
+                  <td>{registro.created_at.formart("MM/DD/YYYY")}</td>
+                  <td>{registro.tipo}</td>
                 </tr>
               ))}
             </tbody>
@@ -157,4 +160,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default Registro;

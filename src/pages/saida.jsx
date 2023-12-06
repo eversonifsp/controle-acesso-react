@@ -38,9 +38,6 @@ function Saida() {
         },
         {
           headers: { Authorization: storedToken },
-        },
-        {
-          params: { prontuario: valor.prontuario },
         }
       );
 
