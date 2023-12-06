@@ -26,16 +26,16 @@ function FotoVisitante() {
       <Camera />
       <div className="col-button-voltar-entrar">
         <button
-          className="button-voltar-entrar"
-          type="button"
-          onClick={() => history("/saida")}
-        >
-          {" "}
-          <IoArrowBackCircle /> Voltar
+              className="button-voltar-entrar"
+              type="button"
+              onClick={() => history("/entrada")}
+            >
+              {" "}
+              <IoArrowBackCircle /> Voltar
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 export default FotoVisitante;
