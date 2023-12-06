@@ -10,11 +10,20 @@ import apiClient from "../config/apiClient";
 function Registro() {
   const history = useNavigate();
   const [registros, setRegistros] = useState([]);
+  const storedToken = localStorage.getItem("token");
 
   useEffect(() => {
     const buscarRegistros = async () => {
       try {
-        const response = await apiClient.get("/registro_acesso_usuarios");
+        const response = await apiClient.get(
+          `/registro_acesso_usuarios?prontuario`,
+          {
+            headers: { Authorization: storedToken },
+          },
+          {
+            params: { prontuario: registros.prontuario },
+          }
+        );
         setRegistros(response.data);
       } catch (error) {
         console.error("Erro ao obter registros:", error);

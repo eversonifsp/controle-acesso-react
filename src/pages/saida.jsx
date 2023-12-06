@@ -28,7 +28,7 @@ function Saida() {
     if (valor.cb_cpf == "") {
       toast.error("prontuario ou cpf invalido");
     } else {
-      toast.success("entrada registrada com sucesso");
+      toast.success("saida registrada com sucesso");
     }
     try {
       const response = await apiClient.post(
