@@ -15,8 +15,7 @@ function Entrar() {
   const history = useNavigate();
 
   const [valor, setValor] = useState({
-    prontuario: "",
-    cpf: "",
+    prontuario_cpf: "",
     nome: "",
     telefone: "",
     email: "",
@@ -30,13 +29,14 @@ function Entrar() {
 
   const registraEntrada = async (e) => {
     e.preventDefault();
+    console.log('valor', valor)
 
     if (registrado == "nao_registrado") {
       try {
         console.log(storedToken);
 
         const response = await apiClient.post(
-          `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
+          `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario_cpf}`,
           {
             tipo: "entrada",
           },
@@ -45,12 +45,12 @@ function Entrar() {
           }
         );
 
-        console.log(valor.prontuario);
+        console.log(valor.prontuario_cpf);
         if (response.status === 201) {
           toast.success("Entrada registrada com sucesso");
         }
       } catch (error) {
-        toast.error("Prontuario invalido!");
+        toast.error("Prontuario ou CPF invalido!");
       }
     } else if (registrado == "registrado") {
       try {
@@ -59,7 +59,7 @@ function Entrar() {
           "/visitantes",
           {
             // envia para a API os valores dos campos
-            cpf: valor.cpf,
+            cpf: valor.prontuario_cpf,
             nome: valor.nome,
             telefone: valor.telefone,
             email: valor.email,
@@ -110,7 +110,7 @@ function Entrar() {
             type="text"
             className="form-control-entrar"
             placeholder="Prontuario ou CPF"
-            name="cpf"
+            name="prontuario_cpf"
             onChange={valorEntrada}
           ></input>
         </div>
