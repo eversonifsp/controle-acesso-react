@@ -50,7 +50,7 @@ function Login() {
         if (storedToken && userType === "admin") {
           history("/adm");
         } else if (storedToken && userType === "porteiro") {
-          history("/porteiro");
+          history("/portaria");
         } else {
           toast.error("Usuario não autorizado!");
         }

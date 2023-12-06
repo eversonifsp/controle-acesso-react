@@ -60,17 +60,6 @@ function Registro() {
     history("/adm");
   };
 
-  const data = new Date(registro.created_at);
-  const dataFormatada = formatoData.format(data);
-  const formatoData = new Intl.DateTimeFormat("pt-BR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-
   return (
     <fragment>
       <header>
@@ -171,7 +160,7 @@ function Registro() {
                 <tr>
                   <td>{registro.usuario.prontuario}</td>
                   <td>{registro.usuario.nome}</td>
-                  <td>{dataFormatada}</td>
+                  <td>{registro.created_at}</td>
                   <td>{registro.tipo}</td>
                 </tr>
               ))}
