@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { FaCamera } from "react-icons/fa6";
+
 
 import apiClient from "../config/apiClient";
 function Entrar() {
@@ -73,6 +75,22 @@ function Entrar() {
       toast.error("Cadastro Falhou!");
     } } 
   };
+
+
+  // const handleScan = (result, error) => {
+  //   if (!!result) {
+  //     alert("Prontuário: ${result}\nAluno liberado!");
+  //     setProntuario(result);
+  //   }
+
+  //   if (!!error) {
+  //     console.info(error);
+  //   }
+  // };
+
+
+
+
 
   return (
     <div className="container-entrar">
@@ -169,9 +187,20 @@ function Entrar() {
               </label>
             </div>
           </div>
+
+        </div>
+        <div className="col-camera-entrar" id= "QRcode">
+          <button
+            className="button-camera-entrar"
+            type="button"
+            onClick={() => history("/foto")}
+          >
+            {" "}
+            <FaCamera /> Foto visitante{" "}
+          </button>
         </div>
 
-        <div className="col-camera-entrar">
+        <div className="col-camera-entrar" id="campos">
           <button
             className="button-camera-entrar"
             type="button"
@@ -182,13 +211,14 @@ function Entrar() {
           </button>
         </div>
 
+
         <div className="line-button-entrar">
           <div className="col-button-entrar">
             <button className="button-entrar" type="submit">
               {" "}
               Registrar
             </button>
-          </div>
+          </div>  
 
           <ToastContainer />
           <div className="col-button-voltar-entrar">
@@ -201,6 +231,7 @@ function Entrar() {
               <IoArrowBackCircle /> Voltar
             </button>
           </div>
+
         </div>
       </form>
     </div>
