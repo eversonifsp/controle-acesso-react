@@ -190,7 +190,7 @@ function Entrar() {
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/foto")}
+            onClick={() => history("/FotoVisitante")}
           >
             {" "}
             <FaCamera /> Foto visitante{" "}
