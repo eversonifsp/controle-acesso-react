@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from './App';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Entrar from './pages/entrada';
 import Login from './pages/login';
@@ -9,7 +8,9 @@ import Portaria from './pages/portaria';
 import Adm from './pages/adm';
 import Saida from './pages/saida';
 import Gerenciar from './pages/gerenciar_usuarios';
-import Leitor from './Leitor';
+import LeitorEntry from './LeitorEntry';
+import LeitorExit from './LeitorExit';
+
 
 const router = createBrowserRouter([
   {
@@ -42,10 +43,13 @@ const router = createBrowserRouter([
     element: <Gerenciar/>
   },
   {
-    path: "leitor",
-    element: <Leitor/>
+    path: "leitorEntry",
+    element: <LeitorEntry/>
+  },
+  {
+    path: "leitorExit",
+    element: <LeitorExit/>
   }
-
 ])
 
 

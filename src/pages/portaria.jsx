@@ -8,6 +8,7 @@ const Portaria = () => {
   const history = useNavigate();
   const token = localStorage.getItem("token");
 
+  // Redirecioa o usuario para a entrada caso possua o token
   const entry = () => {
     if (token) {
       history("/entrada");
@@ -17,6 +18,7 @@ const Portaria = () => {
     }
   };
 
+  // Redirecioa o usuario para a saida caso possua o token
   const exit = () => {
     if (token) {
       history("/saida");

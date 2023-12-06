@@ -25,17 +25,13 @@ function Saida() {
     {
       console.log(valor);
     }
-    // Bloquear o recarregamento da página
+
     if (valor.cb_cpf == "") {
       toast.error("prontuario ou cpf invalido");
     } else {
       toast.success("entrada registrada com sucesso");
     }
     try {
-      console.log("chegou");
-
-      console.log(storedToken);
-
       const response = await apiClient.post(
         `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
         {
@@ -49,7 +45,6 @@ function Saida() {
         }
       );
 
-      console.log(valor.prontuario);
       if (response.status === 201) {
         toast.success("Saida registrada com sucesso");
       } else {
@@ -86,7 +81,9 @@ function Saida() {
         </div>
 
         <div className="col-camera-sair">
-          <button type="button" className="button-camera-sair">
+          <button type="button" className="button-camera-sair"
+          onClick={() => history("/LeitorExit")}
+          >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}
           </button>

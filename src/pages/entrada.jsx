@@ -3,14 +3,13 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-
 import apiClient from "../config/apiClient";
+
 function Entrar() {
   const storedToken = localStorage.getItem("token");
-  console.log(storedToken);
   const history = useNavigate();
 
   const [valor, setValor] = useState({
@@ -175,7 +174,7 @@ function Entrar() {
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/Leitor")}
+            onClick={() => history("/LeitorEntry")}
           >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}
