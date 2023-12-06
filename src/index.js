@@ -14,6 +14,7 @@ import FotoVisitante from "./FotoVisitante";
 import Cadastrar from "./pages/cadastro";
 import Registro from "./pages/registro";
 import { PrivateRoute } from "./privateRoute"; // Certifique-se de que esta importação está correta
+import AlimentarBase from "./pages/alimentar_base";
 
 const App = () => {
   return (
@@ -44,6 +45,16 @@ const App = () => {
           </PrivateRoute>
         }
       />
+
+      <Route 
+        path="adm/alimentar_base"
+        element={
+          <PrivateRoute>
+            <AlimentarBase/>
+          </PrivateRoute>
+        }
+      />
+        
       <Route
         path="portaria"
         element={

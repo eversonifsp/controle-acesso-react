@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Adm() {
-  const history = useNavigate ();
+  const navigate = useNavigate();
 
   const [valor, setValor] = useState({
     nome: "",
@@ -26,11 +26,11 @@ function Adm() {
   };
 
   const fluxo = () => {
-    history("/registro");
+    navigate("/registro");
   }
 
   const consulta = () => {
-    history("/gerenciar");
+    navigate("/gerenciar");
   }
 
   return (
@@ -52,6 +52,10 @@ function Adm() {
 
       <div className="col-consulta">
         <button className="button-consulta" onClick={consulta}> Gerenciar Usuários </button>
+      </div>
+
+      <div className="col-consulta">
+        <button className="button-consulta" onClick={() => navigate('/adm/alimentar_base')}> Alimentar base </button>
       </div>
     </div>
   );
