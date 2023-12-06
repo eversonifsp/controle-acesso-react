@@ -1,0 +1,224 @@
+.container-cadastrar{
+    margin: auto;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(2px);
+    border: none;
+    min-height: 85vh;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .form-cadastrar{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .line-cadastrar{
+    display: flex;
+    padding: 0rem 1rem 3rem 1rem;
+  }
+  
+  .line-button-cadastrar{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1em 2rem 1rem 2rem;
+  }
+  
+  .col-cadastrar{
+    width: 55%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem 2rem 0rem 2rem;
+  }
+  
+  .col-cadastrar-logo{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1.5rem 2rem 0rem 2rem;
+  }
+  
+  .col-user-cadastrar,
+  .col-nome-cadastrar,
+  .col-tel-cadastrar,
+  .col-email-cadastrar{
+    padding: 0.5rem 2rem 0rem 2rem;
+  }
+  
+  
+  .form-control-cadastrar {
+    padding: 5px;
+    margin: 5px 0;
+    outline: none;
+    height: 40px;
+    width: 100% ;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: #ADADAD;
+    background-color: white;
+    color: #757575;
+    font-size: 15px;
+  }
+  
+  .form-control-cadastrar:hover,.form-control-cadastrar:focus,.form-control-cadastrar:active {
+    border-color: transparent;
+    border-bottom: 2px solid #00ee98;
+    border-radius: 0;
+  }
+  
+  .tipo{
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+  }
+  
+  .form-radio-cadastro{
+    appearance: none;
+  }
+
+  .form-radio-cadastro:checked + .tipo::before{
+    background-color: #00ee98;
+  }
+  
+  .tipo::before{
+    content: '';
+    display: block;
+    height: 0.8rem;
+    width: 0.8rem;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s ease-in-out;
+    padding: 1px;
+  }
+  
+  
+  .button-cadastrar{
+    background-color: #00ee98;
+    border-radius: 5px;
+    height: 35px;
+    width: 100px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+  }
+  
+  .button-cadastrar:hover{
+    background-color:  #00cd82;
+    box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+  }
+  
+  .button-voltar-cadastrar{
+    background-color: transparent;
+    border-radius: 5px;
+    height: 35px;
+    width: 100px;
+    border: none;
+    color: #00ee98;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+   
+  }
+  
+  .button-voltar-cadastrar:hover{
+    color: #FFF;
+    background-color:  #00cd82;
+    box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    
+    body, html{
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
+    }
+    
+    .container-cadastrar{
+      min-height: 45vh;
+    }
+  
+    .button-cadastrar, .button-voltar-cadastrar{
+       font-size: 15px;
+  }
+  }
+  
+  
+  @media only screen and (max-width: 720px) {
+  
+    body, html{
+        height: auto;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+    }
+  
+    .container-cadastrar{
+        box-shadow: none;
+        max-width: 80%;
+    }
+  
+    .line-cadastrar{
+      padding: 0rem 0rem 1rem 0rem;
+    }
+
+    .logoif{
+        width: 100px;
+        height: 120px;
+    }
+  
+    .col-user-cadastrar,
+    .col-nome-cadastrar,
+    .col-tel-cadastrar,
+    .col-email-cadastrar{
+        padding: 1.5rem 0.5rem 0rem 0.5rem;
+      }
+
+    .col-cadastrar{
+        padding: 1.5rem 0.5rem 0rem 0.5rem;
+      }
+
+    .col-cadastrar-logo{
+        padding: 1.5rem 0.5rem 0rem 2rem;
+      }
+
+    .line-button-cadastrar{
+        justify-content: space-between;
+        padding: 2rem 1rem 1rem 1rem; ;
+      }
+  }
+  
+  @media only screen and (max-width: 480px){
+  
+    .container-cadastrar{
+        max-width: 90%;
+    }
+  
+  }
+  
