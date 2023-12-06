@@ -1,0 +1,169 @@
+.line-input{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    margin: 1rem;
+  }
+
+.line-filtrar-por{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-registros{
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+.tipo{
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+  }
+  
+.radio-filtro{
+    appearance: none;
+  }
+
+.radio-filtro:checked + .tipo::before{
+    background-color: #00ee98;
+  }
+  
+.tipo::before{
+    content: '';
+    display: block;
+    height: 0.8rem;
+    width: 0.8rem;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s ease-in-out;
+    padding: 1px;
+  }
+  
+.line-filtrar-por p{
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem;
+}
+
+.por-user,
+.por-data{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+
+.col-input{
+   width: 80%;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+}
+
+.col-filtrar{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+
+}
+
+.input-control{
+    padding: 1rem;
+    margin: 5px 0;
+    outline: none;
+    height: 35px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 15px;
+    border-color: #ADADAD;
+    background-color: white;
+    color: #757575;
+    font-size: 15px;
+    width: 80%;
+}
+
+.filtro{
+    background-color: transparent;
+    color: #00ee98;
+    border-color: transparent;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 25px;
+    width: 80px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtro:hover{
+    color: #FFF;
+    background-color: #00cd82;
+    box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+}
+
+.line-button-regi{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem 2rem 1rem 2rem;
+  }
+
+  .button-voltar-regi{
+    background-color: transparent;
+    border-radius: 5px;
+    height: 35px;
+    width: 100px;
+    border: none;
+    color:#00ee98;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+   
+  }
+  
+  .button-voltar-regi:hover{
+    color: #FFF;
+    background-color: #00cd82;
+    box-shadow: 0px 4px 7px 0px rgba(160,160,160,0.25);
+  }
+
+
+
+@media only screen and (max-width: 1024px) {
+  
+    body{
+        overflow-x: hidden;
+    }
+
+    .container-registros{
+        display: block;
+        overflow-x: auto;
+      }
+    
+  }
+
+  @media only screen and (max-width: 720px) {
+  
+   .input-control{
+    width: 100%;
+   }
+    
+  }
+  
