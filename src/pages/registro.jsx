@@ -28,7 +28,6 @@ function Registro() {
     history("/adm");
   };
 
-
   return (
     <fragment>
       <header>
@@ -99,11 +98,21 @@ function Registro() {
           <table>
             <thead>
               <tr>
-                <th><h2>Prontuario/CPF</h2></th>
-                <th><h2>Nome</h2></th>
-                <th><h2>Data</h2></th>
-                <th><h2>Entrada</h2></th>
-                <th><h2>Saida</h2></th>
+                <th>
+                  <h2>Prontuario/CPF</h2>
+                </th>
+                <th>
+                  <h2>Nome</h2>
+                </th>
+                <th>
+                  <h2>Data</h2>
+                </th>
+                <th>
+                  <h2>Entrada</h2>
+                </th>
+                <th>
+                  <h2>Saida</h2>
+                </th>
               </tr>
             </thead>
             <tbody>
