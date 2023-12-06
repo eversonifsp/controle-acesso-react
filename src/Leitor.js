@@ -1,10 +1,10 @@
 import React from 'react';
-import Camera from './componentes/Camera';
+import LeitorQRCode from './componentes/LeitorQRCode';
 
 function Leitor() {
   return (
     <div>
-      <Camera />
+      <LeitorQRCode />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import "./css/login.css";
 import logoif from "../img/logoIF.png";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -15,7 +14,7 @@ function Login() {
     prontuario: "",
     password: "",
   });
-  
+
   // passar valor dos inputs para a const "valor"
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
@@ -24,6 +23,8 @@ function Login() {
   const loginUs = async (e) => {
     //impede o reload da pagina ao finalizar a digitação do input
     e.preventDefault();
+    // limpa o localStorage a cada acesso na pagina login
+    localStorage.clear();
     // tenta fazer a requisição para api
     try {
       // define rota e metodo de requisição do login
@@ -45,10 +46,12 @@ function Login() {
         localStorage.setItem("token", token);
         // passa o token do localStorage para uma constante
         const storedToken = localStorage.getItem("token");
-        console.log()
-        // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina 
-        if (storedToken && (userType == "admin" || userType == "porteiro")) {
-          history("/portaria");
+        console.log();
+        // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina
+        if (storedToken && userType === "admin") {
+          history("/adm");
+        } else if (storedToken && userType === "porteiro") {
+          history("/porteiro");
         } else {
           toast.error("Usuario não autorizado!");
         }

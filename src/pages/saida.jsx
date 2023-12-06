@@ -26,11 +26,11 @@ function Saida() {
       console.log(valor);
     }
     // Bloquear o recarregamento da página
-    // if(valor.cb_cpf == ""){
-    //   toast.error("prontuario ou cpf invalido")
-    // }else{
-    //   toast.success("entrada registrada com sucesso")
-    // }
+    if (valor.cb_cpf == "") {
+      toast.error("prontuario ou cpf invalido");
+    } else {
+      toast.success("entrada registrada com sucesso");
+    }
     try {
       console.log("chegou");
 
@@ -43,9 +43,10 @@ function Saida() {
         },
         {
           headers: { Authorization: storedToken },
-        } //{
-        //   params: {"prontuario": valor.prontuario}
-        // }
+        },
+        {
+          params: { prontuario: valor.prontuario },
+        }
       );
 
       console.log(valor.prontuario);

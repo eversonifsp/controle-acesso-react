@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
 
 import apiClient from "../config/apiClient";
 function Entrar() {
