@@ -31,10 +31,11 @@ function Login() {
       const response = await apiClient.post("/login", {
         // envia para a API os valores dos campos
         usuario: {
-          prontuario: valor.prontuario,
+          login: valor.prontuario,
           password: valor.password,
         },
       });
+
       // Captura o token
       const token = response.headers.authorization;
       // Captura o tipo de usuario
@@ -50,7 +51,7 @@ function Login() {
         if (storedToken && userType === "admin") {
           history("/adm");
         } else if (storedToken && userType === "porteiro") {
-          history("/porteiro");
+          history("/portaria");
         } else {
           toast.error("Usuario não autorizado!");
         }
