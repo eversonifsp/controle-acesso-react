@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import apiClient from "../config/apiClient";
+import { useNavigate, Link } from "react-router-dom";
 
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
+  const [novoUsuario, setNovoUsuario] = useState({
+    prontuario: "",
+    nome: "",
+    telefone: "",
+    email: "",
+    tipo: "",
+  });
 
   /* Consume a api buscando usuários */
   useEffect(() => {
+    // Carregar usuários da API ao montar o componente
+    fetchUsuarios();
+  }, []);
+
     const fetchUsuarios = async () => {
       try {
         const response = await apiClient.get("/usuarios");
@@ -17,21 +29,12 @@ function Gerenciar() {
       }
   };
 
-  fetchUsuarios();
-}, []);
-
-  /* Adiciona o usuário e fecha o modal */
+  /* Adiciona o usuário */
   const handleAddUsuario = async () => {
     try {
-      const response = await fetch("https://sua-api.com/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(novoUsuario),
-      });
+        const response = await apiClient.post("/usuarios", novoUsuario);
 
-      if (response.ok) {
+      if (response.status === 201) {
         // Atualiza a lista de usuários após a adição bem-sucedida
         fetchUsuarios();
         // Limpa os dados do novo usuário
@@ -47,6 +50,7 @@ function Gerenciar() {
       }
     } catch (error) {
       console.error("Erro ao adicionar usuário:", error);
+      alert("Erro ao adicionar usuário");
     }
   };
 
@@ -64,7 +68,6 @@ function Gerenciar() {
     <div> 
       <main>
         <div className="container-usuario">
-          <table>
           <form>
             <label>Prontuário:</label>
             <input
@@ -100,12 +103,9 @@ function Gerenciar() {
               value={novoUsuario.tipo}
               onChange={(e) => setNovoUsuario({ ...novoUsuario, tipo: e.target.value })}
             />
-
-            <button type="button" onClick={handleAddUsuario}>
-              Adicionar Usuário
-            </button>
           </form>
 
+        <table>
           <tbody>
               {usuarios.map((usuarios, index) => (
                 <tr key={index}>
@@ -138,11 +138,10 @@ function Gerenciar() {
       <footer>
         <div className="line-button-gerenciar">
           <div className="col-button-criar">
-            <button className="button-criar" type="submit">
+            <button className="button-criar" type="button" onClick={handleAddUsuario}>
               Criar Usuário
             </button>
           </div>
-
           <div className="col-button-voltar-gerenciar">
             <button className="button-voltar-gerenciar" type="button">
               <IoArrowBackCircle /> Voltar
