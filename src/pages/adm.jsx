@@ -4,8 +4,11 @@ import { FaUserPlus } from "react-icons/fa6";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Adm() {
+  const history = useNavigate ();
+
   const [valor, setValor] = useState({
     nome: "",
     cpf: "",
@@ -16,12 +19,19 @@ function Adm() {
     setValor({ ...valor, [e.target.name]: e.target.value });
 
   const AddVisitante = async (e) => {
-    // Bloquear o recarregamento da página
     e.preventDefault();
     {
       console.log(valor);
     }
   };
+
+  const fluxo = () => {
+    history("/registro");
+  }
+
+  const consulta = () => {
+    history("/gerenciar");
+  }
 
   return (
     <div className="container-adm">
@@ -37,11 +47,11 @@ function Adm() {
       </div>
 
       <div className="col-fluxo">
-        <button className="button-fluxo">Fluxo de entrada e saída</button>
+        <button className="button-fluxo" onClick={fluxo}>Fluxo de entrada e saída</button>
       </div>
 
       <div className="col-consulta">
-        <button className="button-consulta"> Gerenciar Usuários </button>
+        <button className="button-consulta" onClick={consulta}> Gerenciar Usuários </button>
       </div>
     </div>
   );

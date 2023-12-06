@@ -149,6 +149,7 @@ function Entrar() {
           </div>
         )}
 
+          {/* radios button */}
         <div className="line-radio">
           <div className="line-line-radio">
             <div className="col-registrado">
@@ -190,7 +191,7 @@ function Entrar() {
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/foto")}
+            onClick={() => history("/FotoVisitante")}
           >
             {" "}
             <FaCamera /> Foto visitante{" "}
