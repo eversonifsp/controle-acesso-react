@@ -13,7 +13,7 @@ import LeitorEntry from "./LeitorEntry";
 import FotoVisitante from "./FotoVisitante";
 import Cadastrar from "./pages/cadastro";
 import Registro from "./pages/registro";
-import { PrivateRoute, PrivateAdminRoute, PrivatePorteiroRoute } from "./privateRoute"; // Certifique-se de que esta importação está correta
+//import { PrivateRoute, PrivateAdminRoute, PrivatePorteiroRoute } from "./privateRoute"; // Certifique-se de que esta importação está correta
 import AlimentarBase from "./pages/alimentar_base";
 
 const App = () => {
@@ -24,91 +24,91 @@ const App = () => {
       <Route
         path="entrada"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <Entrar />
-          </PrivatePorteiroRoute>
+        //  </PrivatePorteiroRoute>
         }
       />
       <Route
         path="saida"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <Saida />
-          </PrivatePorteiroRoute>
+       //   </PrivatePorteiroRoute>
         }
       />
       <Route
         path="adm"
         element={
-          <PrivateAdminRoute>
+       //   <PrivateAdminRoute>
             <Adm />
-          </PrivateAdminRoute>
+       //   </PrivateAdminRoute>
         }
       />
 
       <Route 
         path="adm/alimentar_base"
         element={
-          <PrivateAdminRoute>
+         // <PrivateAdminRoute>
             <AlimentarBase/>
-          </PrivateAdminRoute>
+         // </PrivateAdminRoute>
         }
       />
         
       <Route
         path="portaria"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <Portaria />
-          </PrivatePorteiroRoute>
+     //     </PrivatePorteiroRoute>
         }
       />
       <Route
         path="gerenciar"
         element={
-          <PrivateAdminRoute>
+        //  <PrivateAdminRoute>
             <Gerenciar />
-          </PrivateAdminRoute>
+       //   </PrivateAdminRoute>
         }
       />
       <Route
         path="leitorEntry"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <LeitorEntry />
-          </PrivatePorteiroRoute>
+        //  </PrivatePorteiroRoute>
         }
       />
       <Route
         path="leitorExit"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <LeitorExit />
-          </PrivatePorteiroRoute>
+        //  </PrivatePorteiroRoute>
         }
       />
       <Route
         path="fotoVisitante"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <FotoVisitante />
-          </PrivatePorteiroRoute>
+        //  </PrivatePorteiroRoute>
         }
       />
       <Route
         path="cadastrar"
         element={
-          <PrivatePorteiroRoute>
+        //  <PrivatePorteiroRoute>
             <Cadastrar />
-          </PrivatePorteiroRoute>
+        //  </PrivatePorteiroRoute>
         }
       />
       <Route
         path="registro"
         element={
-          <PrivatePorteiroRoute>
+         // <PrivatePorteiroRoute>
             <Registro />
-          </PrivatePorteiroRoute>
+         // </PrivatePorteiroRoute>
         }
       />
     </Routes>
