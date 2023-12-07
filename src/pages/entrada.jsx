@@ -15,7 +15,7 @@ function Entrar() {
   const history = useNavigate();
 
   const [valor, setValor] = useState({
-    prontuario_cpf: "",
+    cpf: "",
     nome: "",
     telefone: "",
     email: "",
@@ -36,7 +36,7 @@ function Entrar() {
         console.log(storedToken);
 
         const response = await apiClient.post(
-          `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario_cpf}`,
+          `/registro_acesso_usuarios?prontuario_cpf=${valor.cpf}`,
           {
             tipo: "entrada",
           },
@@ -78,18 +78,6 @@ function Entrar() {
       }
     }
   };
-
-  // const handleScan = (result, error) => {
-  //   if (!!result) {
-  //     alert("Prontuário: ${result}\nAluno liberado!");
-  //     setProntuario(result);
-  //   }
-
-  //   if (!!error) {
-  //     console.info(error);
-  //   }
-  // };
-
   return (
     <div className="container-entrar">
       <form className="form-entrar" onSubmit={registraEntrada}>
@@ -110,7 +98,7 @@ function Entrar() {
             type="text"
             className="form-control-entrar"
             placeholder="Prontuario ou CPF"
-            name="prontuario_cpf"
+            name="cpf"
             onChange={valorEntrada}
           ></input>
         </div>

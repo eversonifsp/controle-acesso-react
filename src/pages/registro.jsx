@@ -3,7 +3,6 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import apiClient from "../config/apiClient";
 
@@ -68,7 +67,6 @@ function Registro() {
     day: "2-digit",
   });
   const dataFormatada = formatoData.format(data);
-
 
   return (
     <fragment>
@@ -170,7 +168,7 @@ function Registro() {
                 <tr>
                   <td>{registro.usuario.prontuario}</td>
                   <td>{registro.usuario.nome}</td>
-                  <td>{registro.created_at}</td>
+                  <td>{dataFormatada}</td>
                   <td>{registro.tipo}</td>
                 </tr>
               ))}

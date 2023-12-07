@@ -1,12 +1,10 @@
 import "./css/cadastro-style.css";
-import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
 import apiClient from "../config/apiClient";
 
 function Cadastrar() {
@@ -23,15 +21,6 @@ function Cadastrar() {
 
   const registraSaida = async (e) => {
     e.preventDefault();
-    {
-      console.log(valor);
-    }
-    // Bloquear o recarregamento da página
-    // if(valor.cb_cpf == ""){
-    //   toast.error("prontuario ou cpf invalido")
-    // }else{
-    //   toast.success("entrada registrada com sucesso")
-    // }
     try {
       const response = await apiClient.post(
         `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,

@@ -21,18 +21,10 @@ function Saida() {
 
   const registraSaida = async (e) => {
     e.preventDefault();
-    {
-      console.log(valor);
-    }
 
-    if (valor.cb_cpf == "") {
-      toast.error("prontuario ou cpf invalido");
-    } else {
-      toast.success("saida registrada com sucesso");
-    }
     try {
       const response = await apiClient.post(
-        `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
+        `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario}`,
         {
           tipo: "saida",
         },

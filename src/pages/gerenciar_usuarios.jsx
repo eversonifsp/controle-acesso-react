@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { Button, Modal, } from 'antd'; 
 import { IoArrowBackCircle } from "react-icons/io5";
 import apiClient from "../config/apiClient";
 import { useNavigate } from "react-router-dom";
 import "./css/gerenciar.css";
 
+
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
   const history = useNavigate();
+
+  const [valor, setValor] = useState({
+    cpf: "",
+    nome: "",
+    telefone: "",
+    email: "",  
+    foto: "",
+  });
+
+  const valorEntrada = (e) =>
+    setValor({ ...valor, [e.target.name]: e.target.value });
 
   const fetchUsuarios = () => {
     console.log('nfasnfnaio')
@@ -17,6 +30,20 @@ function Gerenciar() {
     }).then(({ data }) => {
       setUsuarios(data);
     }).catch((error) => console.log('error', error))
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => fetchUsuarios(), []);
@@ -75,9 +102,26 @@ function Gerenciar() {
                     <p>{usuario.tipo}</p>
                   </td>
                   <td>
-                    <button onClick={() => ({})}>Editar</button>
+                    <button type="primary" onClick={showModal}>Editar</button>
                     <button onClick={() => ({})}>Excluir</button>
                   </td>
+                      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                      <div className="col-user-cadastrar">
+                        <input type="text" className="form-control-cadastrar" placeholder="Prontuario" name="prontuario" onChange={valorEntrada}></input>
+                      </div>
+
+                      <div className="col-nome-cadastrar">
+                        <input type="text" className="form-control-cadastrar" placeholder="Nome" name="Nome" onChange={valorEntrada}></input>
+                      </div>
+
+                      <div className="col-tel-cadastrar">
+                        <input type="text" className="form-control-cadastrar" placeholder="Telefone" name="Telefone" onChange={valorEntrada}></input>
+                      </div>
+
+                      <div className="col-email-cadastrar">
+                        <input type="email" className="form-control-cadastrar" placeholder="E-mail" name="E-mail" onChange={valorEntrada}></input>
+                      </div>
+                      </Modal>
                 </tr>
               ))}
             </tbody>
