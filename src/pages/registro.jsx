@@ -71,7 +71,7 @@ function Registro() {
 
 
   return (
-    <fragment>
+    <div>
       <header>
         <div className="line-gerenciar">
           <div className="col-gerenciar">
@@ -129,12 +129,12 @@ function Registro() {
         </div>
 
         <div className="line-input">
-          <div className="col-user-entrar">
+          <div className="col-input">
             <input
               type="text"
-              className="form-control-entrar"
+              className="input-control"
               placeholder="Prontuario ou CPF"
-              name="prontuario"
+              name=""
               onChange={valorEntrada}
             ></input>
           </div>
@@ -193,7 +193,7 @@ function Registro() {
           </div>
         </div>
       </footer>
-    </fragment>
+    </div>
   );
 }
 

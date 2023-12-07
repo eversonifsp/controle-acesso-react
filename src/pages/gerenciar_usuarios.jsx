@@ -150,7 +150,7 @@ function Gerenciar() {
       <div className="line-button-gerenciar">
         <div className="col-button-voltar-gerenciar">
           <button
-            className="button-voltar-entrar"
+            className="button-voltar-gerenciar"
             type="button"
             onClick={() => history("/adm")}
           >

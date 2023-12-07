@@ -11,30 +11,53 @@
     flex-direction: row;
     justify-content: center;
 }
+
 .table-container{
   padding: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 4em;
 }
 
 .table {
-  width: 100%;
+  padding: 0.5rem;
   border-collapse: collapse;
+  border: 1px solid #ddd;
 }
 
-.table th, .table td {
-  padding: 10px;
-  text-align: center;
+.table thead th{
+  padding: 0.5rem 3.5rem 0.5rem 3.5rem;
+  background-color: #f2f2f2;
   border: 1px solid #ddd;
+}
+
+.table th{
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+}
+
+.table td{
+    border: 1px solid;
+    border: 1px solid #ddd;
+}
+
+.table th h2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 18px ;
+  width: 5rem;
+}
+
+.table td p{
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.table th {
-  background-color: #f2f2f2;
-  text-align: center;
+  font-size: 15px;
+  padding: 0rem 0.2rem 0rem 0.2rem;
 }
 
 .tipo{
@@ -109,6 +132,12 @@
     width: 80%;
 }
 
+.input-control:hover,.input-control:focus,.input-control:active {
+  border-color: transparent;
+  border-bottom: 2px solid #00ee98;
+  border-radius: 0;
+}
+
 .filtro{
     background-color: transparent;
     color: #00ee98;
@@ -169,9 +198,14 @@
         overflow-x: hidden;
     }
 
-    .container-registros{
+    main{
+      margin-top: 2rem;
+    }
+
+    .table-container{
         display: block;
         overflow-x: auto;
+        margin-top: 0rem;
       }
     
   }
@@ -181,6 +215,8 @@
    .input-control{
     width: 100%;
    }
-    
+
+   .line-button-regi {
+    justify-content: flex-end;
   }
-  
+}
