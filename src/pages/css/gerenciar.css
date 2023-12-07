@@ -30,14 +30,6 @@ header{
   padding: 1.5rem 2rem 0rem 2rem;
 }
 
-.container-usuario{
-  padding: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .criar-usuario form {
   margin-bottom: 2em;
   display: none;
@@ -48,22 +40,38 @@ header{
   margin-right: 0.8em;
 }
 
-.tabela {
-  margin-top: 4em;
-  margin-left: 4em;
+
+.tabela{
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
 }
+
 
 table{
   padding: 0.5rem;
   border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+thead th{
+  padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
 }
 
 th{
-  padding: 0.5rem 3rem 0.5rem 3rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
 }
+
 
 td{
   border: 1px solid;
+  border: 1px solid #ddd;
 }
 
 th h2{
@@ -240,7 +248,7 @@ footer {
 
 .line-button-gerenciar{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   padding: 1.5rem 2rem 1rem 2rem;
@@ -293,9 +301,10 @@ footer {
 
 @media only screen and (max-width: 1024px) {
   
-  .container-usuario{
+  .tabela{
     display: block;
     overflow-x: auto;
+    margin-left: 0rem;
   }
   
 }

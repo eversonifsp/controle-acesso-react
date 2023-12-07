@@ -71,8 +71,16 @@ function Registro() {
 
 
   return (
-    <fragment>
+    <div>
       <header>
+      <button
+              className="button-voltar-regi"
+              type="button"
+              onClick={returnAdm}
+            >
+              {" "}
+              <IoArrowBackCircle /> Voltar
+      </button>
         <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
@@ -86,6 +94,7 @@ function Registro() {
               className="logoif"
             />{" "}
           </div>
+         
         </div>
       </header>
 
@@ -129,12 +138,12 @@ function Registro() {
         </div>
 
         <div className="line-input">
-          <div className="col-user-entrar">
+          <div className="col-input">
             <input
               type="text"
-              className="form-control-entrar"
+              className="input-control"
               placeholder="Prontuario ou CPF"
-              name="prontuario"
+              name=""
               onChange={valorEntrada}
             ></input>
           </div>
@@ -178,22 +187,8 @@ function Registro() {
           </table>
         </div>
       </main>
-
-      <footer>
-        <div className="line-button-regi">
-          <div className="col-button-voltar-regi">
-            <button
-              className="button-voltar-regi"
-              type="button"
-              onClick={returnAdm}
-            >
-              {" "}
-              <IoArrowBackCircle /> Voltar
-            </button>
-          </div>
-        </div>
-      </footer>
-    </fragment>
+      
+    </div>
   );
 }
 

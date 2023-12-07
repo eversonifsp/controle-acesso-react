@@ -4,7 +4,7 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import apiClient from "../config/apiClient";
 import { useNavigate } from "react-router-dom";
 import "./css/gerenciar.css";
-
+import logoif from "../img/logoIF.png";
 
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
@@ -49,7 +49,24 @@ function Gerenciar() {
   useEffect(() => fetchUsuarios(), []);
 
   return (
-    <div>
+<div>
+    <header>
+    <div className="line-gerenciar">
+      <div className="col-gerenciar">
+        {" "}
+        <h2>Gerenciar Usuários</h2>{" "}
+      </div>
+      <div className="col-gerenciar-logo">
+        {" "}
+        <img
+          src={logoif}
+          alt="Logo do Instituto Federal de Cubatão"
+          className="logoif"
+        />{" "}
+      </div>
+    </div>
+  </header>
+
       <main>
         <div className="tabela">
           <table>
@@ -133,7 +150,7 @@ function Gerenciar() {
       <div className="line-button-gerenciar">
         <div className="col-button-voltar-gerenciar">
           <button
-            className="button-voltar-entrar"
+            className="button-voltar-gerenciar"
             type="button"
             onClick={() => history("/adm")}
           >
