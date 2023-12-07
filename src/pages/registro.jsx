@@ -3,9 +3,9 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import apiClient from "../config/apiClient";
+import { format } from 'date-fns';
 
 function Registro() {
   const valorEntrada = (e) =>
@@ -18,6 +18,8 @@ function Registro() {
   const history = useNavigate();
   const [registros, setRegistros] = useState([]);
   const [filtro, setFiltro] = useState(["user"]);
+  const [formattedDate, setFormattedDate] = useState(null);
+
 
   const buscarRegistros = async (e) => {
     e.preventDefault();
@@ -32,9 +34,14 @@ function Registro() {
             headers: { Authorization: storedToken },
           }
         );
-        registros = setRegistros(response.data);
-        console.log(registros);
-        const date = registros.created_at;
+        
+        const dataFromBackend = response.data;
+        setRegistros(dataFromBackend);
+        if (dataFromBackend.length > 0 && dataFromBackend[0].created_at) {
+          const backendDate = dataFromBackend[0].created_at;
+          const formatted = format(new Date(backendDate), "dd/MM/yyyy HH:mm:ss");
+          setFormattedDate(formatted);
+        }
       } catch (error) {
         console.error("Erro ao obter registros:", error);
       }
@@ -47,40 +54,54 @@ function Registro() {
             headers: { Authorization: storedToken },
           }
         );
-        registros = setRegistros(response.data);
-        console.log(registros);
-        const date = registros.created_at;
-      } catch (error) {
-        console.error("Erro ao obter registros:", error);
+        const dataFromBackend = response.data;
+      setRegistros(dataFromBackend);
+
+      if (dataFromBackend.length > 0 && dataFromBackend[0].created_at) {
+        const backendDate = dataFromBackend[0].created_at;
+        const formatted = format(new Date(backendDate), "dd/MM/yyyy HH:mm:ss");
+        setFormattedDate(formatted);
       }
+    } catch (error) {
+      console.error("Erro ao obter registros:", error);
+    }
     }
   };
 
   const returnAdm = () => {
     history("/adm");
   };
-  const data = registros.created_at;
-  const formatoData = new Intl.DateTimeFormat("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  });
-  const dataFormatada = formatoData.format(data);
+ 
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 11;
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = registros.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(registros.length / recordsPerPage);
 
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
-    <div>
+    <fragment>
       <header>
       <button
-              className="button-voltar-regi"
-              type="button"
-              onClick={returnAdm}
-            >
-              {" "}
-              <IoArrowBackCircle /> Voltar
-      </button>
+          className="button-voltar-regi"
+          type="button"
+          onClick={returnAdm}
+        >
+          {" "}
+          <IoArrowBackCircle /> Voltar
+        </button>
         <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
@@ -94,7 +115,6 @@ function Registro() {
               className="logoif"
             />{" "}
           </div>
-         
         </div>
       </header>
 
@@ -138,12 +158,12 @@ function Registro() {
         </div>
 
         <div className="line-input">
-          <div className="col-input">
+          <div className="col-user-entrar">
             <input
               type="text"
-              className="input-control"
+              className="form-control-entrar"
               placeholder="Prontuario ou CPF"
-              name=""
+              name="prontuario"
               onChange={valorEntrada}
             ></input>
           </div>
@@ -175,20 +195,28 @@ function Registro() {
               </tr>
             </thead>
             <tbody>
-              {registros.map((registro) => (
+              {currentRecords.map((registro) => (
                 <tr>
                   <td>{registro.usuario.prontuario}</td>
                   <td>{registro.usuario.nome}</td>
-                  <td>{registro.created_at}</td>
+                  <td>{formattedDate}</td>
                   <td>{registro.tipo}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+        <div className="pagination">
+          <button className="btn-pag" onClick={prevPage} disabled={currentPage === 1}>
+            Anterior
+          </button>
+          <span>{`Página ${currentPage} de ${totalPages}`}</span>
+          <button className="btn-pag" onClick={nextPage} disabled={currentPage === totalPages}>
+            Próxima
+          </button>
+        </div>
       </main>
-      
-    </div>
+    </fragment>
   );
 }
 
