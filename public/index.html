@@ -35,41 +35,5 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-
-  <!-- Script para o radio button do form entrar-->
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $("#campos").hide();
-      $("input[name$='opcao']").click(function () {
-        var reg = $(this).val();
-        if (reg == "nao_registrado") {
-          $("#campos").show();
-          $("#QRcode").hide();
-
-          $(".form-control-entrar").css({
-            height: "35px",
-          });
-
-          $(".line-entrar").css({
-            padding: "0rem 1rem 0.5rem 1rem",
-          });
-        } else if (reg == "registrado") {
-          $("#QRcode").show();
-          $("#campos").hide();
-
-          $(".col-user-entrar").css({
-            padding: "1.5rem 2rem 0rem 2rem",
-          });
-
-          $(".form-control-entrar").css({
-            height: "45px",
-          });
-
-          $(".line-entrar").css({
-            padding: "0rem 1rem 3rem 1rem",
-          });
-        }
-      });
-    });
-  </script>
 </html>
+
