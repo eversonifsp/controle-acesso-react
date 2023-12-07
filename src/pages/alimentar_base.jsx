@@ -38,7 +38,7 @@ export default function AlimentarBase(){
       <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
-            <h2>Registros</h2>{" "}
+            <h2>Alimentar Base</h2>{" "}
           </div>
           <div className="col-gerenciar-logo">
             {" "}
