@@ -15,7 +15,7 @@ function Entrar() {
   const history = useNavigate();
 
   const [valor, setValor] = useState({
-    cpf: "",
+    prontuario_cpf: "",
     nome: "",
     telefone: "",
     email: "",
@@ -31,12 +31,12 @@ function Entrar() {
     e.preventDefault();
     console.log("valor", valor);
 
-    if (registrado == "nao_registrado") {
+    if (registrado == "registrado") {
       try {
         console.log(storedToken);
 
         const response = await apiClient.post(
-          `/registro_acesso_usuarios?prontuario_cpf=${valor.cpf}`,
+          `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario_cpf}`,
           {
             tipo: "entrada",
           },
@@ -52,7 +52,7 @@ function Entrar() {
       } catch (error) {
         toast.error("Prontuario ou CPF invalido!");
       }
-    } else if (registrado == "registrado") {
+    } else if (registrado == "nao_registrado") {
       try {
         // define rota e metodo de requisição do cadastro
         const response = await apiClient.post(
@@ -78,6 +78,7 @@ function Entrar() {
       }
     }
   };
+
   return (
     <div className="container-entrar">
       <form className="form-entrar" onSubmit={registraEntrada}>
@@ -98,7 +99,7 @@ function Entrar() {
             type="text"
             className="form-control-entrar"
             placeholder="Prontuario ou CPF"
-            name="cpf"
+            name="prontuario_cpf"
             onChange={valorEntrada}
           ></input>
         </div>
