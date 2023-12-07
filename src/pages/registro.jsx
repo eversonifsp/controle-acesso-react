@@ -73,6 +73,14 @@ function Registro() {
   return (
     <div>
       <header>
+      <button
+              className="button-voltar-regi"
+              type="button"
+              onClick={returnAdm}
+            >
+              {" "}
+              <IoArrowBackCircle /> Voltar
+      </button>
         <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
@@ -86,6 +94,7 @@ function Registro() {
               className="logoif"
             />{" "}
           </div>
+         
         </div>
       </header>
 
@@ -178,21 +187,7 @@ function Registro() {
           </table>
         </div>
       </main>
-
-      <footer>
-        <div className="line-button-regi">
-          <div className="col-button-voltar-regi">
-            <button
-              className="button-voltar-regi"
-              type="button"
-              onClick={returnAdm}
-            >
-              {" "}
-              <IoArrowBackCircle /> Voltar
-            </button>
-          </div>
-        </div>
-      </footer>
+      
     </div>
   );
 }

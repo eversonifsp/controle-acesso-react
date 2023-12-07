@@ -24,12 +24,11 @@ function Entrar() {
 
   const [registrado, setRegistrado] = useState("registrado");
 
-  const valorEntrada = (e) =>
-    setValor({ ...valor, [e.target.name]: e.target.value });
+  const valorEntrada = (e) => {
+    setValor({ ...valor, [e.target.name]: e.target.value }); }
 
   const registraEntrada = async (e) => {
     e.preventDefault();
-    console.log("valor", valor);
 
     if (registrado == "registrado") {
       try {
@@ -44,8 +43,6 @@ function Entrar() {
             headers: { Authorization: storedToken },
           }
         );
-
-        console.log(valor.prontuario_cpf);
         if (response.status === 201) {
           toast.success("Entrada registrada com sucesso");
         }
@@ -68,7 +65,10 @@ function Entrar() {
             headers: { Authorization: storedToken },
           }
         );
-
+          console.log(  "cpf:", valor.prontuario_cpf,
+            "nome:", valor.nome,
+            "telefone:", valor.telefone,
+           " email:", valor.email,)
         // se houver sucesso segue o codigo
         if (response.status === 201) {
           toast.success("Cadastro e entrada realizados com sucesso");

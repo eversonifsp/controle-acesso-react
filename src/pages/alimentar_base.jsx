@@ -7,8 +7,11 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import Loading from "react-loading";
 import logoif from "../img/logoIF.png";
+import { useNavigate } from "react-router-dom";
 
 export default function AlimentarBase(){
+  const history = useNavigate();
+
   const [file, setFile] = useState(null);
 
   const { promiseInProgress } = usePromiseTracker()
@@ -82,7 +85,7 @@ export default function AlimentarBase(){
             <button
               className="button-voltar-regi"
               type="button"
-             // onClick={returnAdm}
+              onClick= {() => history("/adm")}
             >
               {" "}
               <IoArrowBackCircle /> Voltar
