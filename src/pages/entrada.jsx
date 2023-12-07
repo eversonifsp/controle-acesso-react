@@ -3,24 +3,23 @@ import { IoQrCodeOutline } from "react-icons/io5";
 import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
-
+import { FaCamera } from "react-icons/fa6";
 import apiClient from "../config/apiClient";
+
 function Entrar() {
   const storedToken = localStorage.getItem("token");
   console.log(storedToken);
   const history = useNavigate();
 
   const [valor, setValor] = useState({
-    prontuario: "",
-    cpf: "",
-    nome:"",
-    telefone:"",
-    email:"",
-    foto:"",
+    prontuario_cpf: "",
+    nome: "",
+    telefone: "",
+    email: "",
+    foto: "",
   });
 
   const [registrado, setRegistrado] = useState("registrado");
@@ -30,50 +29,66 @@ function Entrar() {
 
   const registraEntrada = async (e) => {
     e.preventDefault();
+    console.log('valor', valor)
 
     if (registrado == "nao_registrado") {
-    try {
-      console.log(storedToken);
+      try {
+        console.log(storedToken);
 
-      const response = await apiClient.post(
-        `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
-        {
-          tipo: "entrada",
-        },
-        {
-          headers: { Authorization: storedToken },
+        const response = await apiClient.post(
+          `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario_cpf}`,
+          {
+            tipo: "entrada",
+          },
+          {
+            headers: { Authorization: storedToken },
+          }
+        );
+
+        console.log(valor.prontuario_cpf);
+        if (response.status === 201) {
+          toast.success("Entrada registrada com sucesso");
         }
-      );
-
-      console.log(valor.prontuario);
-      if (response.status === 201) {
-        toast.success("Entrada registrada com sucesso");
+      } catch (error) {
+        toast.error("Prontuario ou CPF invalido!");
       }
-    } catch (error) {
-      toast.error("Prontuario invalido!");
+    } else if (registrado == "registrado") {
+      try {
+        // define rota e metodo de requisição do cadastro
+        const response = await apiClient.post(
+          "/visitantes",
+          {
+            // envia para a API os valores dos campos
+            cpf: valor.prontuario_cpf,
+            nome: valor.nome,
+            telefone: valor.telefone,
+            email: valor.email,
+          },
+          {
+            headers: { Authorization: storedToken },
+          }
+        );
+
+        // se houver sucesso segue o codigo
+        if (response.status === 201) {
+          toast.success("Cadastro e entrada realizados com sucesso");
+        }
+      } catch (error) {
+        toast.error("Cadastro Falhou!");
+      }
     }
-  } else if (registrado == "registrado"){
-    try {
-      // define rota e metodo de requisição do cadastro
-      const response = await apiClient.post("/visitantes", {
-        // envia para a API os valores dos campos
-          cpf: valor.cpf, 
-          nome: valor.nome,
-          telefone: valor.telefone,
-          email: valor.email
-      },
-      {
-        headers: { Authorization: storedToken },
-      });
-
-      // se houver sucesso segue o codigo
-      if (response.status === 201) {
-        toast.success("Cadastro e entrada realizados com sucesso");
-      }
-    } catch (error) {
-      toast.error("Cadastro Falhou!");
-    } } 
   };
+
+  // const handleScan = (result, error) => {
+  //   if (!!result) {
+  //     alert("Prontuário: ${result}\nAluno liberado!");
+  //     setProntuario(result);
+  //   }
+
+  //   if (!!error) {
+  //     console.info(error);
+  //   }
+  // };
 
   return (
     <div className="container-entrar">
@@ -95,7 +110,7 @@ function Entrar() {
             type="text"
             className="form-control-entrar"
             placeholder="Prontuario ou CPF"
-            name="cpf"
+            name="prontuario_cpf"
             onChange={valorEntrada}
           ></input>
         </div>
@@ -134,6 +149,7 @@ function Entrar() {
           </div>
         )}
 
+          {/* radios button */}
         <div className="line-radio">
           <div className="line-line-radio">
             <div className="col-nao-registrado">
@@ -166,17 +182,29 @@ function Entrar() {
               ></input>
               <label for="opc2" className="reg">
                 {" "}
+
                 Não Registrado{" "}
+
               </label>
             </div>
           </div>
         </div>
-
-        <div className="col-camera-entrar">
+        <div className="col-camera-entrar" id="QRcode">
           <button
             className="button-camera-entrar"
             type="button"
-            onClick={() => history("/Leitor")}
+            onClick={() => history("/FotoVisitante")}
+          >
+            {" "}
+            <FaCamera /> Foto visitante{" "}
+          </button>
+        </div>
+
+        <div className="col-camera-entrar" id="campos">
+          <button
+            className="button-camera-entrar"
+            type="button"
+            onClick={() => history("/LeitorEntry")}
           >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}

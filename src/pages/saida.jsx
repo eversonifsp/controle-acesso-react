@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import axios from "axios";
 import apiClient from "../config/apiClient";
 
 function Saida() {
@@ -25,17 +24,13 @@ function Saida() {
     {
       console.log(valor);
     }
-    // Bloquear o recarregamento da página
-    // if(valor.cb_cpf == ""){
-    //   toast.error("prontuario ou cpf invalido")
-    // }else{
-    //   toast.success("entrada registrada com sucesso")
-    // }
+
+    if (valor.cb_cpf == "") {
+      toast.error("prontuario ou cpf invalido");
+    } else {
+      toast.success("saida registrada com sucesso");
+    }
     try {
-      console.log("chegou");
-
-      console.log(storedToken);
-
       const response = await apiClient.post(
         `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
         {
@@ -43,12 +38,9 @@ function Saida() {
         },
         {
           headers: { Authorization: storedToken },
-        } //{
-        //   params: {"prontuario": valor.prontuario}
-        // }
+        }
       );
 
-      console.log(valor.prontuario);
       if (response.status === 201) {
         toast.success("Saida registrada com sucesso");
       } else {
@@ -85,7 +77,9 @@ function Saida() {
         </div>
 
         <div className="col-camera-sair">
-          <button type="button" className="button-camera-sair">
+          <button type="button" className="button-camera-sair"
+          onClick={() => history("/LeitorExit")}
+          >
             {" "}
             <IoQrCodeOutline /> Ler QRcode{" "}
           </button>

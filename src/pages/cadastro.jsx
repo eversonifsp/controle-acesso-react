@@ -33,10 +33,6 @@ function Cadastrar() {
     //   toast.success("entrada registrada com sucesso")
     // }
     try {
-      console.log("chegou");
-
-      console.log(storedToken);
-
       const response = await apiClient.post(
         `/registro_acesso_usuarios?prontuario=${valor.prontuario}`,
         {

@@ -1,14 +1,15 @@
-import React from 'react';
-import Camera from './componentes/Camera';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import LeitorQRCodeExit from "./componentes/LeitorQRCodeExit";
+import { useNavigate } from "react-router-dom";
 
-function FotoVisitante() {
+function Leitor() {
   const history = useNavigate();
 
   const closeCam = () => {
-    history("/entrada");
+    history("/saida");
     window.location.reload();
   };
+
   return (
     <div style={{ width: "40%", margin: "auto" }}>
       <button
@@ -23,9 +24,9 @@ function FotoVisitante() {
       >
         Fechar Camera
       </button>
-      <Camera />
+      <LeitorQRCodeExit />
     </div>
   );
 }
 
-export default FotoVisitante;
+export default Leitor;
