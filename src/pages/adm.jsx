@@ -41,7 +41,7 @@ function Adm() {
       </div>
 
       <div className="col-fluxo">
-        <button className="button-fluxo" onClick={() => navigate('/registro')}>Fluxo de entrada e saída</button>
+        <button className="button-fluxo" onClick={() => navigate('/registro')}>Registros</button>
       </div>
 
       <div className="col-consulta">
