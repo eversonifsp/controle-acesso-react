@@ -13,7 +13,7 @@ export function PrivateRoute({children}){
   
     const isPorteiro = userType === 'porteiro' || userType === 'admin'
   
-    return isPorteiro ? {children} : <Navigate to="/login" />;
+    return isPorteiro ? children : <Navigate to="/login" />;
   }
   
   export function PrivateAdminRoute({ children }) {
@@ -21,5 +21,5 @@ export function PrivateRoute({children}){
   
     const isAdmin = userType === 'admin'
   
-    return isAdmin ? {children} : <Navigate to="/login" />;
+    return isAdmin ? children : <Navigate to="/login" />;
   }

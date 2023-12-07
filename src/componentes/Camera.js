@@ -4,7 +4,7 @@ const Camera = () => {
   const [imageDataUrl, setImageDataUrl] = useState(null);
   const inputRef = useRef(null);
 
-  const openCamera = () => {
+  const abrirCamera = () => {
     inputRef.current.click();
   };
 
@@ -24,16 +24,15 @@ const Camera = () => {
 
   return (
     <div>
-      <button onClick={openCamera}>Abrir Câmera</button>
+      <button onClick={abrirCamera}>Abrir Câmera</button>
       <input
         ref={inputRef}
         type="file"
         accept="image/*"
-        capture="environment"
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
-      {imageDataUrl && <img src={imageDataUrl} alt="Captured" style={{ maxWidth: '100%' }} />}
+      <img src={imageDataUrl} alt="Captured" style={{ maxWidth: '100%' }} />
     </div>
   );
 };

@@ -38,8 +38,22 @@ header{
   align-items: center;
 }
 
-table{
+.criar-usuario form {
+  margin-bottom: 2em;
+  display: none;
+}
 
+.criar-usuario form input {
+  margin-left: 0.5em;
+  margin-right: 0.8em;
+}
+
+.tabela {
+  margin-top: 4em;
+  margin-left: 4em;
+}
+
+table{
   padding: 0.5rem;
   border-collapse: collapse;
 }

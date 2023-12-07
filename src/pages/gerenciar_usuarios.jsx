@@ -1,42 +1,39 @@
-import "./css/gerenciar.css";
-import { FaCamera } from "react-icons/fa";
-import { FaUserPlus } from "react-icons/fa6";
+import React, { useState, useEffect } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
-import logoif from "../img/logoIF.png";
-import React, { useState } from "react";
-/*import Modal from "../componentes/Modal"*/;
+import apiClient from "../config/apiClient";
+import { useNavigate } from "react-router-dom";
+import "./css/gerenciar.css";
 
-function Gerenciar () {
- 
-    const [isModalVisible, setIsModalVisible] =useState(false);
+function Gerenciar() {
+  const [usuarios, setUsuarios] = useState([]);
+  const history = useNavigate();
 
-    return (
-    <fragment>
-      <header>
-        <div className="line-gerenciar">
-          <div className="col-gerenciar">
-            {" "}
-            <h2>Gerenciar Usuários</h2>{" "}
-          </div>
-          <div className="col-gerenciar-logo">
-            {" "}
-            <img
-              src={logoif}
-              alt="Logo do Instituto Federal de Cubatão"
-              className="logoif"
-            />{" "}
-          </div>
-        </div>
-      </header>
+  const fetchUsuarios = () => {
+    console.log('nfasnfnaio')
+    apiClient.get("/usuarios", {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    }).then(({ data }) => {
+      setUsuarios(data);
+    }).catch((error) => console.log('error', error))
+  };
 
+  useEffect(() => fetchUsuarios(), []);
+
+  return (
+    <div>
       <main>
-        <div className="container-usuario">
+        <div className="tabela">
           <table>
             <thead>
               <tr>
                 <th>
                   {" "}
                   <h2>Prontuário</h2>{" "}
+                </th>
+                <th>
+                  <h2>CPF</h2>
                 </th>
                 <th>
                   <h2>Nome</h2>
@@ -56,49 +53,55 @@ function Gerenciar () {
               </tr>
             </thead>
 
-        <tbody>
-          <tr>
-              <td> <p> CB000000X </p> </td>
-              <td> <p> Ronaldo Fenômeno </p> </td>
-              <td> <p>13 000000000 </p> </td>
-              <td> <p>ifsp@email.com</p> </td>
-              <td> <p>ADM</p> </td>
-              <td> <p>Alterar/Excluir</p> </td>
-          </tr>
-
-          <tr>
-              <td> <p> CB000000X </p> </td>
-              <td> <p> Romário </p> </td>
-              <td> <p>13 000000000 </p> </td>
-              <td> <p> RomarioGAmes@email.com</p> </td>
-              <td> <p>Porteiro</p> </td>
-              <td> <p>Alterar/Excluir</p> </td>
-          </tr>
-
-        </tbody>
-      </table>
-
-    </div>
-
-
-   
-    </main>
+            <tbody>
+              {usuarios.map((usuario, index) => (
+                <tr key={index}>
+                  <td>
+                    <p>{usuario.prontuario || '-'}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.cpf}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.nome}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.telefone || '-'}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.email || '-'}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.tipo}</p>
+                  </td>
+                  <td>
+                    <button onClick={() => ({})}>Editar</button>
+                    <button onClick={() => ({})}>Excluir</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
 
     <footer>
-
-    <div className='line-button-gerenciar'>
-  <div className='col-button-criar'>
-      <button className='button-criar' type='submit'> Criar Usuário</button>
-  </div>
-
-  <div className='col-button-voltar-gerenciar'>
-      <button className='button-voltar-gerenciar' type='button'> <IoArrowBackCircle /> Voltar</button>
-  </div>
-</div>
-
+      <div className="line-button-gerenciar">
+        <div className="col-button-voltar-gerenciar">
+          <button
+            className="button-voltar-entrar"
+            type="button"
+            onClick={() => history("/adm")}
+          >
+            {" "}
+            <IoArrowBackCircle /> Voltar
+          </button>
+        </div>
+      </div>
     </footer>
-   </fragment>
+    </div >
   );
 }
 
 export default Gerenciar;
+
