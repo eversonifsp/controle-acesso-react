@@ -2,6 +2,7 @@ import React from 'react';
 import Camera from './componentes/Camera';
 import { useNavigate } from 'react-router-dom';
 
+import { IoArrowBackCircle } from 'react-icons/io5';
 function FotoVisitante() {
   const history = useNavigate();
 

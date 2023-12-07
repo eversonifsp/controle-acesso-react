@@ -5,7 +5,11 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import logoif from "../img/logoIF.png";
 import React, { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 function Adm() {
+  const navigate = useNavigate();
+
   const [valor, setValor] = useState({
     nome: "",
     cpf: "",
@@ -42,6 +46,10 @@ function Adm() {
 
       <div className="col-consulta">
         <button className="button-consulta"> Gerenciar Usuários </button>
+      </div>
+
+      <div className="col-consulta">
+        <button className="button-consulta" onClick={() => navigate('/adm/alimentar_base')}>Alimentar Base</button>
       </div>
     </div>
   );

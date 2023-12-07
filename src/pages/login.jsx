@@ -45,6 +45,7 @@ function Login() {
       if (response.status === 200) {
         // Armazena no localStorage
         localStorage.setItem("token", token);
+        localStorage.setItem("userType", userType);
         // passa o token do localStorage para uma constante
         const storedToken = localStorage.getItem("token");
         // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina
