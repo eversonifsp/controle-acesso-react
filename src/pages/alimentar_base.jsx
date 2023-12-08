@@ -60,9 +60,9 @@ export default function AlimentarBase(){
             
             <div className="col-input-file">
             
-            <input type="file" onChange={handleFileChange}  id="input-csv" class="input-csv"/>
+            <input type="file" onChange={handleFileChange}  id="input-csv"/>
 
-              <label class="input-csv_label" for="input-csv"> <span>Upload file</span> </label>
+              <label for="input-csv"> <span>Upload csv</span> </label>
               </div>
 
               <div className="col-upload">

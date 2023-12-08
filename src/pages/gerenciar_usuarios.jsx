@@ -198,21 +198,6 @@ function Gerenciar() {
           </table>
         </div>
       </main>
-
-    <footer>
-      <div className="line-button-gerenciar">
-        <div className="col-button-voltar-gerenciar">
-          <button
-            className="button-voltar-gerenciar"
-            type="button"
-            onClick={() => history("/adm")}
-          >
-            {" "}
-            <IoArrowBackCircle /> Voltar
-          </button>
-        </div>
-      </div>
-    </footer>
     </div >
   );
 }
