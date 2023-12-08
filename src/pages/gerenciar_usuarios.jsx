@@ -5,6 +5,8 @@ import apiClient from "../config/apiClient";
 import { useNavigate } from "react-router-dom";
 import "./css/gerenciar.css";
 import logoif from "../img/logoIF.png";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
@@ -14,15 +16,14 @@ function Gerenciar() {
     cpf: "",
     nome: "",
     telefone: "",
-    email: "",  
-    foto: "",
   });
+
+ 
 
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
   const fetchUsuarios = () => {
-    console.log('nfasnfnaio')
     apiClient.get("/usuarios", {
       headers: {
         authorization: localStorage.getItem("token"),
@@ -34,12 +35,34 @@ function Gerenciar() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
+  const showModal = (userId) => {
     setIsModalOpen(true);
+    const userModal = userId;
+    localStorage.setItem("userModal", userModal);
+    console.log(userModal);
+    
+    
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
+  const handleOk =  async() => {
+    const userIdmodal = localStorage.getItem("userModal");
+      try {
+        console.log(`/usuarios/${userIdmodal}`);
+        const response = await apiClient.put(`/usuarios/${userIdmodal}`,valor,
+          {
+            headers: { Authorization: localStorage.getItem("token") },
+          }
+        );
+
+        if (response.status === 200) {
+          window.location.reload();
+          toast.success("Usuário atualizado com sucesso!");
+          setIsModalOpen(false);
+          fetchUsuarios();
+        }
+      } catch (error) {
+        console.error("Erro ao atualizar usuário:", error);
+      } 
   };
 
   const handleCancel = () => {
@@ -47,6 +70,27 @@ function Gerenciar() {
   };
 
   useEffect(() => fetchUsuarios(), []);
+
+  const storedToken = localStorage.getItem("token");
+
+  const handleDeleteUser = async (userId) => {
+    try {
+
+      console.log(`/usuarios/${userId}`);
+      const response = await apiClient.delete(`/usuarios/${userId}`, {
+        headers: { Authorization: storedToken },
+      });
+
+
+      
+      if (response.status === 204) {
+        toast.success('Usuário excluído com sucesso!');
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Erro ao excluir usuário:', error);
+    }
+  };
 
   return (
 <div>
@@ -77,16 +121,13 @@ function Gerenciar() {
                   <h2>Prontuário</h2>{" "}
                 </th>
                 <th>
-                  <h2>CPF</h2>
-                </th>
-                <th>
                   <h2>Nome</h2>
                 </th>
                 <th>
-                  <h2>Telefone</h2>
+                  <h2>Autorização</h2>
                 </th>
                 <th>
-                  <h2>E-mail</h2>
+                  <h2>Turno</h2>
                 </th>
                 <th>
                   <h2>Tipo</h2>
@@ -104,39 +145,51 @@ function Gerenciar() {
                     <p>{usuario.prontuario || '-'}</p>
                   </td>
                   <td>
-                    <p>{usuario.cpf}</p>
+                    <p>{usuario.nome || '-'}</p>
                   </td>
                   <td>
-                    <p>{usuario.nome}</p>
+                    <p>{usuario.autorizado_sair || '-'}</p>
                   </td>
                   <td>
-                    <p>{usuario.telefone || '-'}</p>
+                    <p>{usuario.turno|| '-'}</p>
                   </td>
                   <td>
-                    <p>{usuario.email || '-'}</p>
+                    <p>{usuario.tipo || '-'}</p>
                   </td>
                   <td>
-                    <p>{usuario.tipo}</p>
+                    <button type="primary" onClick={() => (showModal(usuario.id))}>Editar</button>
+                    <button onClick={() => handleDeleteUser(usuario.id)}>Excluir</button>
                   </td>
-                  <td>
-                    <button type="primary" onClick={showModal}>Editar</button>
-                    <button onClick={() => ({})}>Excluir</button>
-                  </td>
-                      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                      <Modal title="Basic Modal" open={isModalOpen}  onOk={() => handleOk()} onCancel={handleCancel}>
                       <div className="col-user-cadastrar">
-                        <input type="text" className="form-control-cadastrar" placeholder="Prontuario" name="prontuario" onChange={valorEntrada}></input>
+                        <input type="text" className="form-control-cadastrar" placeholder="nome" name="nome" onChange={valorEntrada}></input>
                       </div>
 
                       <div className="col-nome-cadastrar">
-                        <input type="text" className="form-control-cadastrar" placeholder="Nome" name="Nome" onChange={valorEntrada}></input>
+                      <select className="form-control-cadastrar" name="turno" value={valor.turno} onChange={valorEntrada}>
+                      <option value="">Escolha o turno</option>
+                      <option value="manha">Manha</option>
+                      <option value="tarde">Tarde</option>
+                      </select>
                       </div>
 
                       <div className="col-tel-cadastrar">
-                        <input type="text" className="form-control-cadastrar" placeholder="Telefone" name="Telefone" onChange={valorEntrada}></input>
+                      <select className="form-control-cadastrar" name="tipo" value={valor.tipo} onChange={valorEntrada}>
+                      <option value="">Escolha o tipo</option>
+                      <option value="outros_colaboradores_campus">Outros Colaboradores do Campus</option>
+                      <option value="aluno">Aluno</option>
+                      <option value="admin">Admin</option>
+                      <option value="secretario">Secretário</option>
+                      <option value="porteiro">Porteiro</option>
+                      </select>
                       </div>
 
                       <div className="col-email-cadastrar">
-                        <input type="email" className="form-control-cadastrar" placeholder="E-mail" name="E-mail" onChange={valorEntrada}></input>
+                      <select className="form-control-cadastrar" name="autorizado_sair" value={valor.autorizado_sair} onChange={valorEntrada}>
+                      <option value="">Escolha</option>
+                      <option value="sim">Sim</option>
+                      <option value="nao">Não</option>
+                      </select>
                       </div>
                       </Modal>
                 </tr>

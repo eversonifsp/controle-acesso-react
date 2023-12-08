@@ -47,24 +47,24 @@ function Registro() {
       }
     } else if (filtro === "data") {
       try {
-        console.log(storedToken);
-        const response = await apiClient.get(
-          `/registro_acesso_usuarios?data=${valor.created_at}`,
-          {
-            headers: { Authorization: storedToken },
-          }
-        );
-        const dataFromBackend = response.data;
-      setRegistros(dataFromBackend);
+        const inputDate = valor.prontuario;
+        const filteredRecords = registros.filter(record => {
+          const recordDate = record.created_at;
+          return recordDate.toDateString() === inputDate.toDateString();
+        });
 
-      if (dataFromBackend.length > 0 && dataFromBackend[0].created_at) {
-        const backendDate = dataFromBackend[0].created_at;
-        const formatted = format(new Date(backendDate), "dd/MM/yyyy HH:mm:ss");
-        setFormattedDate(formatted);
+        console.log("Filtered Records:", filteredRecords);
+        console.log("Input Date:", inputDate);
+        setRegistros(filteredRecords);
+
+        if (filteredRecords.length > 0 && filteredRecords[0].created_at) {
+          const backendDate = filteredRecords[0].created_at;
+          const formatted = format(new Date(backendDate), "dd/MM/yyyy HH:mm:ss");
+          setFormattedDate(formatted);
+        }
+      }catch (error) {
+        console.error("Erro ao filtrar registros por data:", error);
       }
-    } catch (error) {
-      console.error("Erro ao obter registros:", error);
-    }
     }
   };
 
@@ -90,6 +90,34 @@ function Registro() {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  const minhaFuncao = async() => {
+    const storedToken = localStorage.getItem("token");
+    try {
+      console.log(valor.prontuario);
+      const response = await apiClient.get(
+        `/registro_acesso_usuarios?created_at=`,
+        {
+          headers: { Authorization: storedToken },
+        }
+      );
+      const dataFromBackend = response.data;
+    setRegistros(dataFromBackend);
+
+    if (dataFromBackend.length > 0 && dataFromBackend[0].created_at) {
+      const backendDate = dataFromBackend[0].created_at;
+      const formatted = format(new Date(backendDate), "dd/MM/yyyy HH:mm:ss");
+      setFormattedDate(formatted);
+    }
+  } catch (error) {
+    console.error("Erro ao obter registros:", error);
+  }
+    
+  };
+
+  useEffect(() => {
+    minhaFuncao()
+  }, []); 
 
   return (
     <fragment>
@@ -140,21 +168,7 @@ function Registro() {
           </div>
 
           {/* radio button para data */}
-          <div className="por-data">
-            <input
-              type="radio"
-              className="radio-filtro"
-              name="opcao"
-              id="opc2"
-              value="data"
-              onChange={(e) => setFiltro(e.target.value)}
-              checked={filtro === "data"}
-            ></input>
-            <label for="opc2" className="tipo">
-              {" "}
-              Por Data{" "}
-            </label>
-          </div>
+          
         </div>
 
         <div className="line-input">

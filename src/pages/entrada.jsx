@@ -17,9 +17,8 @@ function Entrar() {
   const [valor, setValor] = useState({
     prontuario_cpf: "",
     nome: "",
-    telefone: "",
+    tipo: "",
     email: "",
-    foto: "",
   });
 
   const [registrado, setRegistrado] = useState("registrado");
@@ -58,7 +57,7 @@ function Entrar() {
             // envia para a API os valores dos campos
             cpf: valor.prontuario_cpf,
             nome: valor.nome,
-            telefone: valor.telefone,
+            tipo: valor.tipo,
             email: valor.email,
           },
           {
@@ -67,7 +66,7 @@ function Entrar() {
         );
           console.log(  "cpf:", valor.prontuario_cpf,
             "nome:", valor.nome,
-            "telefone:", valor.telefone,
+            "tipo:", valor.tipo,
            " email:", valor.email,)
         // se houver sucesso segue o codigo
         if (response.status === 201) {
@@ -121,8 +120,8 @@ function Entrar() {
               <input
                 type="text"
                 className="form-control-entrar"
-                placeholder="Telefone"
-                name="telefone"
+                placeholder="tipo"
+                name="tipo"
                 onChange={valorEntrada}
               ></input>
             </div>
@@ -176,31 +175,6 @@ function Entrar() {
               </label>
             </div>
           </div>
-        </div>
-        <div className="col-camera-entrar" id="QRcode">
-          {registrado === "nao_registrado" && (
-            <button
-              className="button-camera-entrar"
-              type="button"
-              onClick={() => history("/FotoVisitante")}
-            >
-              {" "}
-              <FaCamera /> Foto visitante{" "}
-            </button>
-          )}
-        </div>
-
-        <div className="col-camera-entrar" id="campos">
-          {registrado === "registrado" && (
-            <button
-              className="button-camera-entrar"
-              type="button"
-              onClick={() => history("/LeitorEntry")}
-            >
-              {" "}
-              <IoQrCodeOutline /> Ler QRcode{" "}
-            </button>
-          )}
         </div>
 
         <div className="line-button-entrar">

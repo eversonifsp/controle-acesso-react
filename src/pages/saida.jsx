@@ -68,15 +68,6 @@ function Saida() {
           ></input>
         </div>
 
-        <div className="col-camera-sair">
-          <button type="button" className="button-camera-sair"
-          onClick={() => history("/LeitorExit")}
-          >
-            {" "}
-            <IoQrCodeOutline /> Ler QRcode{" "}
-          </button>
-        </div>
-
         <div className="line-button-sair">
           <div className="col-button-sair">
             <ToastContainer />
