@@ -67,6 +67,16 @@ function Saida() {
             onChange={valorSaida}
           ></input>
         </div>
+        <div className="col-camera-sair">
+          <button
+            type="button"
+            className="button-camera-sair"
+            onClick={() => history("/LeitorSaida")}
+          >
+            {" "}
+            <IoQrCodeOutline /> Ler QRcode{" "}
+          </button>
+        </div>
 
         <div className="line-button-sair">
           <div className="col-button-sair">

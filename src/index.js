@@ -8,12 +8,13 @@ import Portaria from "./pages/portaria";
 import Adm from "./pages/adm";
 import Saida from "./pages/saida";
 import Gerenciar from "./pages/gerenciar_usuarios";
-import LeitorExit from "./LeitorExit";
-import LeitorEntry from "./LeitorEntry";
-import FotoVisitante from "./FotoVisitante";
-import Cadastrar from "./pages/cadastro";
+import LeitorSaida from "./LeitorSaida";
+import LeitorEntrada from "./LeitorEntrada";
 import Registro from "./pages/registro";
-import { PrivateRoute, PrivateAdminRoute, PrivatePorteiroRoute } from "./privateRoute"; // Certifique-se de que esta importação está correta
+import {
+  PrivateAdminRoute,
+  PrivatePorteiroRoute,
+} from "./privateRoute";
 import AlimentarBase from "./pages/alimentar_base";
 
 const App = () => {
@@ -46,15 +47,15 @@ const App = () => {
         }
       />
 
-      <Route 
+      <Route
         path="adm/alimentar_base"
         element={
           <PrivateAdminRoute>
-            <AlimentarBase/>
+            <AlimentarBase />
           </PrivateAdminRoute>
         }
       />
-        
+
       <Route
         path="portaria"
         element={
@@ -72,34 +73,18 @@ const App = () => {
         }
       />
       <Route
-        path="leitorEntry"
+        path="leitorEntrada"
         element={
           <PrivatePorteiroRoute>
-            <LeitorEntry />
+            <LeitorEntrada />
           </PrivatePorteiroRoute>
         }
       />
       <Route
-        path="leitorExit"
+        path="leitorSaida"
         element={
           <PrivatePorteiroRoute>
-            <LeitorExit />
-          </PrivatePorteiroRoute>
-        }
-      />
-      <Route
-        path="fotoVisitante"
-        element={
-          <PrivatePorteiroRoute>
-            <FotoVisitante />
-          </PrivatePorteiroRoute>
-        }
-      />
-      <Route
-        path="cadastrar"
-        element={
-          <PrivatePorteiroRoute>
-            <Cadastrar />
+            <LeitorSaida />
           </PrivatePorteiroRoute>
         }
       />

@@ -9,46 +9,32 @@ import apiClient from "../config/apiClient";
 function Login() {
   const history = useNavigate();
 
-  // monitorsa valor do prontuario e password
   const [valor, setValor] = useState({
     prontuario: "",
     password: "",
   });
 
-  // passar valor dos inputs para a const "valor"
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
-  // meotodo de login e outros
   const loginUs = async (e) => {
-    //impede o reload da pagina ao finalizar a digitação do input
     e.preventDefault();
-    // limpa o localStorage a cada acesso na pagina login
     localStorage.clear();
-    // tenta fazer a requisição para api
     try {
-      // define rota e metodo de requisição do login
       const response = await apiClient.post("/login", {
-        // envia para a API os valores dos campos
         usuario: {
           login: valor.prontuario,
           password: valor.password,
         },
       });
 
-      // Captura o token
       const token = response.headers.authorization;
-      // Captura o tipo de usuario
       const userType = response.data.tipo;
 
-      // se houver sucesso segue o codigo
       if (response.status === 200) {
-        // Armazena no localStorage
         localStorage.setItem("token", token);
         localStorage.setItem("userType", userType);
-        // passa o token do localStorage para uma constante
         const storedToken = localStorage.getItem("token");
-        // apos sucesso verifica o tipo do usuario e então redireciona para a devida pagina
         if (storedToken && userType === "admin") {
           history("/adm");
         } else if (storedToken && userType === "porteiro") {
