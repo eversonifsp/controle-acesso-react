@@ -80,7 +80,6 @@ function Saida() {
 
         <div className="line-button-sair">
           <div className="col-button-sair">
-            <ToastContainer />
             <button type="submit" className="button-sair">
               {" "}
               Registrar

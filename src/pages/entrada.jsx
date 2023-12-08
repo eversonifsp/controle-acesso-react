@@ -196,8 +196,6 @@ function Entrar() {
               Registrar
             </button>
           </div>
-
-          <ToastContainer />
           <div className="col-button-voltar-entrar">
             <button
               className="button-voltar-entrar"

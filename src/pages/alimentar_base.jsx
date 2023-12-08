@@ -66,8 +66,6 @@ export default function AlimentarBase() {
 
       <main>
         <div className="container-alimentar">
-          <ToastContainer />
-
           <div className="col-input-file">
             <input type="file" onChange={handleFileChange} id="input-csv" />
 

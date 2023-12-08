@@ -16,6 +16,7 @@ import {
   PrivatePorteiroRoute,
 } from "./privateRoute";
 import AlimentarBase from "./pages/alimentar_base";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -104,6 +105,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ToastContainer />
       <App />
     </BrowserRouter>
   </React.StrictMode>

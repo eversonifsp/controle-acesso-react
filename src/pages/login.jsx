@@ -88,7 +88,6 @@ function Login() {
             ></input>
           </div>
 
-          <ToastContainer />
           <div className="col-button-login">
             <button type="submit" className="button-login">
               {" "}

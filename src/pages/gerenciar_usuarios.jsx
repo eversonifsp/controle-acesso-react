@@ -1,15 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
+import Modal from "react-modal";
 import { IoArrowBackCircle } from "react-icons/io5";
 import apiClient from "../config/apiClient";
 import { useNavigate } from "react-router-dom";
-import "./css/gerenciar.css";
 import logoif from "../img/logoIF.png";
 import { toast } from "react-toastify";
+import { set } from "date-fns";
+import './css/gerenciar.css'
 
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
+  const [userModal, setUserModal] = useState();
   const history = useNavigate();
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      padding: '20px',
+      border: 'none',
+      borderRadius: '8px',
+      width: '80%', // Ajuste a largura do modal
+      maxWidth: '600px', // Defina uma largura máxima se desejar
+      maxHeight: '80%', // Ajuste a altura máxima do modal se necessário
+      overflow: 'auto', // Adiciona rolagem se o conteúdo for muito grande
+      boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+  };
 
   const [valor, setValor] = useState({
     cpf: "",
@@ -35,18 +59,9 @@ function Gerenciar() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = (userId) => {
-    setIsModalOpen(true);
-    const userModal = userId;
-    localStorage.setItem("userModal", userModal);
-    console.log(userModal);
-  };
-
   const handleOk = async () => {
-    const userIdmodal = localStorage.getItem("userModal");
     try {
-      console.log(`/usuarios/${userIdmodal}`);
-      const response = await apiClient.put(`/usuarios/${userIdmodal}`, valor, {
+      const response = await apiClient.put(`/usuarios/${valor.id}`, valor, {
         headers: { Authorization: localStorage.getItem("token") },
       });
 
@@ -88,6 +103,12 @@ function Gerenciar() {
       console.error("Erro ao excluir usuário:", error);
     }
   };
+
+  const editUser = (user) => {
+    console.log('user', user)
+    setValor(user)
+    setIsModalOpen(true)
+  }
 
   return (
     <div>
@@ -164,7 +185,7 @@ function Gerenciar() {
                   <td>
                     <button
                       type="primary"
-                      onClick={() => showModal(usuario.id)}
+                      onClick={() => editUser(usuario)}
                     >
                       Editar
                     </button>
@@ -172,72 +193,88 @@ function Gerenciar() {
                       Excluir
                     </button>
                   </td>
-                  <Modal
-                    title="Basic Modal"
-                    open={isModalOpen}
-                    onOk={() => handleOk()}
-                    onCancel={handleCancel}
-                  >
-                    <div className="col-user-cadastrar">
-                      <input
-                        type="text"
-                        className="form-control-cadastrar"
-                        placeholder="nome"
-                        name="nome"
-                        onChange={valorEntrada}
-                      ></input>
-                    </div>
-
-                    <div className="col-nome-cadastrar">
-                      <select
-                        className="form-control-cadastrar"
-                        name="turno"
-                        value={valor.turno}
-                        onChange={valorEntrada}
-                      >
-                        <option value="">Escolha o turno</option>
-                        <option value="manha">Manha</option>
-                        <option value="tarde">Tarde</option>
-                      </select>
-                    </div>
-
-                    <div className="col-tel-cadastrar">
-                      <select
-                        className="form-control-cadastrar"
-                        name="tipo"
-                        value={valor.tipo}
-                        onChange={valorEntrada}
-                      >
-                        <option value="">Escolha o tipo</option>
-                        <option value="outros_colaboradores_campus">
-                          Outros Colaboradores do Campus
-                        </option>
-                        <option value="aluno">Aluno</option>
-                        <option value="admin">Admin</option>
-                        <option value="secretario">Secretário</option>
-                        <option value="porteiro">Porteiro</option>
-                      </select>
-                    </div>
-
-                    <div className="col-email-cadastrar">
-                      <select
-                        className="form-control-cadastrar"
-                        name="autorizado_sair"
-                        value={valor.autorizado_sair}
-                        onChange={valorEntrada}
-                      >
-                        <option value="">Escolha</option>
-                        <option value="sim">Sim</option>
-                        <option value="nao">Não</option>
-                      </select>
-                    </div>
-                  </Modal>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </main>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={customStyles}
+      >
+        <div style={{display: "flex", flexDirection: 'column', gap: 10}}>
+          <div>
+            <h2 style={{ textAlign: 'center'}}>Editar Usuário</h2>
+          </div>
+
+          <div>
+            <p>Nome:</p>
+            <input
+              type="text"
+              className="input-form-gerenciar"
+              placeholder="nome"
+              name="nome"
+              value={valor.nome}
+              onChange={valorEntrada}
+            ></input>
+          </div>
+
+          <div>
+            <p>Turno:</p>
+            <select
+              className="input-form-gerenciar"
+              name="turno"
+              value={valor.turno}
+              onChange={valorEntrada}
+            >
+              <option value="">Escolha o turno</option>
+              <option value="manha">Manha</option>
+              <option value="tarde">Tarde</option>
+            </select>
+          </div>
+
+          <div>
+          <p>Tipo:</p>
+            <select
+              className="input-form-gerenciar"
+              name="tipo"
+              value={valor.tipo}
+              onChange={valorEntrada}
+            >
+              <option value="">Escolha o tipo</option>
+              <option value="outros_colaboradores_campus">
+                Outros Colaboradores do Campus
+              </option>
+              <option value="aluno">Aluno</option>
+              <option value="admin">Admin</option>
+              <option value="secretario">Secretário</option>
+              <option value="porteiro">Porteiro</option>
+            </select>
+          </div>
+
+          <div>
+            <p>Autorizado Sair:</p>
+            <select
+              className="input-form-gerenciar"
+              name="autorizado_sair"
+              value={valor.autorizado_sair}
+              onChange={valorEntrada}
+            >
+              <option value="">Escolha</option>
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
+            </select>
+          </div>
+
+          <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+            <button onClick={handleCancel} style={{ padding: 10, width: '20%', backgroundColor: '#dc3545', color: 'white', cursor: 'pointer', borderRadius: '5px' }}>Cancelar</button>
+            <button onClick={handleOk} style={{ padding: 10, width: '20%', backgroundColor: '#28a745', color: 'white', cursor: 'pointer', borderRadius: '5px' }}>Salvar</button>
+          </div>
+          
+        </div>
+      </Modal>
     </div>
   );
 }

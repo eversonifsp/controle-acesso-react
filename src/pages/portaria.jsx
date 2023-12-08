@@ -39,7 +39,6 @@ const Portaria = () => {
           </div>
         </div>
 
-        <ToastContainer />
         <div className="col-registrar-entrada">
           <button className="button-entrada" onClick={entry}>
             {" "}
@@ -47,7 +46,6 @@ const Portaria = () => {
           </button>
         </div>
 
-        <ToastContainer />
         <div className="col-registrar-saida">
           <button className="button-saida" onClick={exit}>
             {" "}
