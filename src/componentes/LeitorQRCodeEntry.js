@@ -22,8 +22,6 @@ const LeitorQRCode = (props) => {
     console.error(error);
   };
 
-  
-
   const registraEntrada = async (prontuario) => {
     try {
       const response = await apiClient.post(
@@ -40,17 +38,17 @@ const LeitorQRCode = (props) => {
     }
   };
 
-    return (
-      <>
-        {
-          <QrReader
-            onResult={handleScan}
-            onError={handleError}
-            constraints={{ facingMode: "environment" }}
-          />
-        }
-      </>
-    );
-  };
+  return (
+    <>
+      {
+        <QrReader
+          onResult={handleScan}
+          onError={handleError}
+          constraints={{ facingMode: "environment" }}
+        />
+      }
+    </>
+  );
+};
 
 export default LeitorQRCode;

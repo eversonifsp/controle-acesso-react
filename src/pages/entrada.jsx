@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { FaCamera } from "react-icons/fa6";
 import apiClient from "../config/apiClient";
 
 function Entrar() {
@@ -24,7 +23,8 @@ function Entrar() {
   const [registrado, setRegistrado] = useState("registrado");
 
   const valorEntrada = (e) => {
-    setValor({ ...valor, [e.target.name]: e.target.value }); }
+    setValor({ ...valor, [e.target.name]: e.target.value });
+  };
 
   const registraEntrada = async (e) => {
     e.preventDefault();
@@ -50,11 +50,9 @@ function Entrar() {
       }
     } else if (registrado == "nao_registrado") {
       try {
-        // define rota e metodo de requisição do cadastro
         const response = await apiClient.post(
           "/visitantes",
           {
-            // envia para a API os valores dos campos
             cpf: valor.prontuario_cpf,
             nome: valor.nome,
             tipo: valor.tipo,
@@ -64,11 +62,16 @@ function Entrar() {
             headers: { Authorization: storedToken },
           }
         );
-          console.log(  "cpf:", valor.prontuario_cpf,
-            "nome:", valor.nome,
-            "tipo:", valor.tipo,
-           " email:", valor.email,)
-        // se houver sucesso segue o codigo
+        console.log(
+          "cpf:",
+          valor.prontuario_cpf,
+          "nome:",
+          valor.nome,
+          "tipo:",
+          valor.tipo,
+          " email:",
+          valor.email
+        );
         if (response.status === 201) {
           toast.success("Cadastro e entrada realizados com sucesso");
         }
@@ -105,7 +108,6 @@ function Entrar() {
 
         {registrado === "nao_registrado" && (
           <div className="campos-cadastrar" id="campos">
-            {/* Renderize os campos do formulário aqui */}
             <div className="col-name-entrar">
               <input
                 type="text"
@@ -137,8 +139,6 @@ function Entrar() {
             </div>
           </div>
         )}
-
-        {/* radios button */}
         <div className="line-radio">
           <div className="line-line-radio">
             <div className="col-registrado">
@@ -175,6 +175,18 @@ function Entrar() {
               </label>
             </div>
           </div>
+        </div>
+        <div className="col-camera-entrar" id="campos">
+          {registrado === "registrado" && (
+            <button
+              className="button-camera-entrar"
+              type="button"
+              onClick={() => history("/LeitorEntrada")}
+            >
+              {" "}
+              <IoQrCodeOutline /> Ler QRcode{" "}
+            </button>
+          )}
         </div>
 
         <div className="line-button-entrar">
