@@ -30,7 +30,8 @@ function Login() {
 
       const token = response.headers.authorization;
       const userType = response.data.tipo;
-
+      const userNow = response.data.id;
+      localStorage.setItem("userNow", userNow);
       if (response.status === 200) {
         localStorage.setItem("token", token);
         localStorage.setItem("userType", userType);

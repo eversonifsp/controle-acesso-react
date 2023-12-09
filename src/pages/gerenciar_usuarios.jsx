@@ -10,7 +10,8 @@ import './css/gerenciar.css'
 
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
-  const [userModal, setUserModal] = useState();
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+  const [userToDelete, setUserToDelete] = useState(null);
   const history = useNavigate();
 
   const customStyles = {
@@ -58,6 +59,16 @@ function Gerenciar() {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const openDeleteModal = (usuario) => {
+    console.log(usuario);
+    setUserToDelete(usuario);
+    setDeleteModalIsOpen(true);
+  };
+  
+  const closeDeleteModal = () => {
+    setDeleteModalIsOpen(false);
+  };
 
   const handleOk = async () => {
     try {
@@ -87,21 +98,31 @@ function Gerenciar() {
   useEffect(() => fetchUsuarios(), []);
 
   const storedToken = localStorage.getItem("token");
+  const userNow = localStorage.getItem("userNow");
 
-  const handleDeleteUser = async (userId) => {
-    try {
-      console.log(`/usuarios/${userId}`);
-      const response = await apiClient.delete(`/usuarios/${userId}`, {
-        headers: { Authorization: storedToken },
-      });
-
-      if (response.status === 204) {
-        toast.success("Usuário excluído com sucesso!");
-        window.location.reload();
+  const handleDeleteUser = async () => {
+    
+    if (userToDelete) {
+      const userIdString = String(userToDelete.id);
+      const userNowString = String(userNow);
+      if (userIdString !== userNowString) {
+        try {
+          const response = await apiClient.delete(`/usuarios/${userToDelete.id}`, {
+            headers: { Authorization: storedToken },
+          });
+  
+          if (response.status === 204) {
+            toast.success("Usuário excluído com sucesso!");
+            window.location.reload();
+          }
+        } catch (error) {
+          console.error("Erro ao excluir usuário:", error);
+        }
+      } else {
+        toast.error("Não é possível excluir o usuário logado");
       }
-    } catch (error) {
-      console.error("Erro ao excluir usuário:", error);
     }
+    closeDeleteModal();
   };
 
   const editUser = (user) => {
@@ -109,6 +130,8 @@ function Gerenciar() {
     setValor(user)
     setIsModalOpen(true)
   }
+
+
 
   return (
     <div>
@@ -124,7 +147,7 @@ function Gerenciar() {
         <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
-            <h2>Gerenciar Usuários</h2>{" "}
+            <h2>Gerenciar Usuários {userNow}</h2>{" "}
           </div>
           <div className="col-gerenciar-logo">
             {" "}
@@ -189,7 +212,7 @@ function Gerenciar() {
                     >
                       Editar
                     </button>
-                    <button onClick={() => handleDeleteUser(usuario.id)}>
+                    <button onClick={() => openDeleteModal(usuario)}>
                       Excluir
                     </button>
                   </td>
@@ -274,6 +297,17 @@ function Gerenciar() {
           </div>
           
         </div>
+      </Modal>
+      <Modal
+        isOpen={deleteModalIsOpen}
+        onRequestClose={closeDeleteModal}
+        style={customStyles}
+        contentLabel="Confirmação de Exclusão">
+          <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+            <p>Você tem certeza que deseja excluir este usuário?</p>
+            <button onClick={handleDeleteUser} style={{ padding: 10, width: '20%', backgroundColor: '#dc3545', color: 'white', cursor: 'pointer', borderRadius: '5px' }}>Sim</button>
+            <button onClick={closeDeleteModal} style={{ padding: 10, width: '20%', backgroundColor: '#28a745', color: 'white', cursor: 'pointer', borderRadius: '5px' }}>Cancelar</button>
+          </div>
       </Modal>
     </div>
   );
