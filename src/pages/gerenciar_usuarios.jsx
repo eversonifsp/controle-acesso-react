@@ -147,7 +147,7 @@ function Gerenciar() {
         <div className="line-gerenciar">
           <div className="col-gerenciar">
             {" "}
-            <h2>Gerenciar Usuários {userNow}</h2>{" "}
+            <h2>Gerenciar Usuários</h2>{" "}
           </div>
           <div className="col-gerenciar-logo">
             {" "}
@@ -168,6 +168,10 @@ function Gerenciar() {
                 <th>
                   {" "}
                   <h2>Prontuário</h2>{" "}
+                </th>
+                <th>
+                  {" "}
+                  <h2>CPF</h2>{" "}
                 </th>
                 <th>
                   <h2>Nome</h2>
@@ -192,6 +196,9 @@ function Gerenciar() {
                 <tr key={index}>
                   <td>
                     <p>{usuario.prontuario || "-"}</p>
+                  </td>
+                  <td>
+                    <p>{usuario.cpf || "-"}</p>
                   </td>
                   <td>
                     <p>{usuario.nome || "-"}</p>

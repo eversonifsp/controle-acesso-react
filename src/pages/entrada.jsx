@@ -55,7 +55,6 @@ function Entrar() {
           {
             cpf: valor.prontuario_cpf,
             nome: valor.nome,
-            tipo: valor.tipo,
             email: valor.email,
           },
           {
@@ -114,16 +113,6 @@ function Entrar() {
                 className="form-control-entrar"
                 placeholder="Nome"
                 name="nome"
-                onChange={valorEntrada}
-              ></input>
-            </div>
-
-            <div className="col-tel-entrar">
-              <input
-                type="text"
-                className="form-control-entrar"
-                placeholder="tipo"
-                name="tipo"
                 onChange={valorEntrada}
               ></input>
             </div>
