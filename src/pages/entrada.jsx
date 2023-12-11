@@ -10,7 +10,6 @@ import apiClient from "../config/apiClient";
 
 function Entrar() {
   const storedToken = localStorage.getItem("token");
-  console.log(storedToken);
   const history = useNavigate();
 
   const [valor, setValor] = useState({
@@ -31,8 +30,6 @@ function Entrar() {
 
     if (registrado == "registrado") {
       try {
-        console.log(storedToken);
-
         const response = await apiClient.post(
           `/registro_acesso_usuarios?prontuario_cpf=${valor.prontuario_cpf}`,
           {
@@ -61,16 +58,7 @@ function Entrar() {
             headers: { Authorization: storedToken },
           }
         );
-        console.log(
-          "cpf:",
-          valor.prontuario_cpf,
-          "nome:",
-          valor.nome,
-          "tipo:",
-          valor.tipo,
-          " email:",
-          valor.email
-        );
+
         if (response.status === 201) {
           toast.success("Cadastro e entrada realizados com sucesso");
         }

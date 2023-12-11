@@ -11,7 +11,7 @@ import './css/gerenciar.css'
 function Gerenciar() {
   const [usuarios, setUsuarios] = useState([]);
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
-  const [userToDelete, setUserToDelete] = useState(null);
+  const [userSelected, setUserSelected] = useState(null);
   const history = useNavigate();
 
   const customStyles = {
@@ -42,6 +42,8 @@ function Gerenciar() {
     telefone: "",
   });
 
+  const [filtro, setFiltro] = useState("")
+
   const valorEntrada = (e) =>
     setValor({ ...valor, [e.target.name]: e.target.value });
 
@@ -51,6 +53,9 @@ function Gerenciar() {
         headers: {
           authorization: localStorage.getItem("token"),
         },
+        params: {
+          filtro,
+        }
       })
       .then(({ data }) => {
         setUsuarios(data);
@@ -61,8 +66,7 @@ function Gerenciar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const openDeleteModal = (usuario) => {
-    console.log(usuario);
-    setUserToDelete(usuario);
+    setUserSelected(usuario);
     setDeleteModalIsOpen(true);
   };
   
@@ -77,13 +81,12 @@ function Gerenciar() {
       });
 
       if (response.status === 200) {
-        window.location.reload();
         toast.success("Usuário atualizado com sucesso!");
         setIsModalOpen(false);
         fetchUsuarios();
       }
     } catch (error) {
-      console.error("Erro ao atualizar usuário:", error);
+      toast.error("Erro ao atualizar usuário!");
     }
   };
 
@@ -102,21 +105,21 @@ function Gerenciar() {
 
   const handleDeleteUser = async () => {
     
-    if (userToDelete) {
-      const userIdString = String(userToDelete.id);
+    if (userSelected) {
+      const userIdString = String(userSelected.id);
       const userNowString = String(userNow);
       if (userIdString !== userNowString) {
         try {
-          const response = await apiClient.delete(`/usuarios/${userToDelete.id}`, {
+          const response = await apiClient.delete(`/usuarios/${userSelected.id}`, {
             headers: { Authorization: storedToken },
           });
   
           if (response.status === 204) {
             toast.success("Usuário excluído com sucesso!");
-            window.location.reload();
+            fetchUsuarios();
           }
         } catch (error) {
-          console.error("Erro ao excluir usuário:", error);
+          toast.error("Não é possível excluir o usuário logado");
         }
       } else {
         toast.error("Não é possível excluir o usuário logado");
@@ -126,12 +129,29 @@ function Gerenciar() {
   };
 
   const editUser = (user) => {
-    console.log('user', user)
+    setUserSelected(user)
     setValor(user)
     setIsModalOpen(true)
   }
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 15;
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = usuarios.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(usuarios.length / recordsPerPage);
 
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div>
@@ -160,74 +180,111 @@ function Gerenciar() {
         </div>
       </header>
 
-      <main>
-        <div className="tabela">
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  {" "}
-                  <h2>Prontuário</h2>{" "}
-                </th>
-                <th>
-                  {" "}
-                  <h2>CPF</h2>{" "}
-                </th>
-                <th>
-                  <h2>Nome</h2>
-                </th>
-                <th>
-                  <h2>Autorização</h2>
-                </th>
-                <th>
-                  <h2>Turno</h2>
-                </th>
-                <th>
-                  <h2>Tipo</h2>
-                </th>
-                <th>
-                  <h2>Ações</h2>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {usuarios.map((usuario, index) => (
-                <tr key={index}>
-                  <td>
-                    <p>{usuario.prontuario || "-"}</p>
-                  </td>
-                  <td>
-                    <p>{usuario.cpf || "-"}</p>
-                  </td>
-                  <td>
-                    <p>{usuario.nome || "-"}</p>
-                  </td>
-                  <td>
-                    <p>{usuario.autorizado_sair || "-"}</p>
-                  </td>
-                  <td>
-                    <p>{usuario.turno || "-"}</p>
-                  </td>
-                  <td>
-                    <p>{usuario.tipo || "-"}</p>
-                  </td>
-                  <td>
-                    <button
-                      type="primary"
-                      onClick={() => editUser(usuario)}
-                    >
-                      Editar
-                    </button>
-                    <button onClick={() => openDeleteModal(usuario)}>
-                      Excluir
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div style={{flexDirection: 'row', display: 'flex', justifyContent: 'center', alignItems:'flex-end', gap: 20}}>
+        <div>
+          <input
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') fetchUsuarios()
+            }}
+            type="text"
+            className="form-control-entrar"
+            style={{ width: 250 }}
+            placeholder="prontuario ou nome ou CPF"
+            name="filtro"
+            onChange={(e) => setFiltro(e.target.value)}
+          ></input>
         </div>
+
+        <button className='filtrar-button' onClick={fetchUsuarios}>Filtrar</button>
+      </div>
+
+      <main>
+        {
+          totalPages > 0 ? (
+            <div>
+              <div className="tabela">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>
+                        {" "}
+                        <h2>Prontuário</h2>{" "}
+                      </th>
+                      <th>
+                        {" "}
+                        <h2>CPF</h2>{" "}
+                      </th>
+                      <th>
+                        <h2>Nome</h2>
+                      </th>
+                      <th>
+                        <h2>Autorização</h2>
+                      </th>
+                      <th>
+                        <h2>Turno</h2>
+                      </th>
+                      <th>
+                        <h2>Tipo</h2>
+                      </th>
+                      <th>
+                        <h2>Ações</h2>
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {currentRecords.map((usuario, index) => (
+                      <tr key={index}>
+                        <td>
+                          <p>{usuario.prontuario || "-"}</p>
+                        </td>
+                        <td>
+                          <p>{usuario.cpf || "-"}</p>
+                        </td>
+                        <td>
+                          <p>{usuario.nome || "-"}</p>
+                        </td>
+                        <td>
+                          <p>{usuario.autorizado_sair || "-"}</p>
+                        </td>
+                        <td>
+                          <p>{usuario.turno || "-"}</p>
+                        </td>
+                        <td>
+                          <p>{usuario.tipo || "-"}</p>
+                        </td>
+                        <td>
+                          <button
+                            type="primary"
+                            onClick={() => editUser(usuario)}
+                          >
+                            Editar
+                          </button>
+                          <button onClick={() => openDeleteModal(usuario)}>
+                            Excluir
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="pagination">
+                <button className="btn-pag" onClick={prevPage} disabled={currentPage === 1}>
+                  Anterior
+                </button>
+                <span>{`Página ${currentPage} de ${totalPages}`}</span>
+                <button className="btn-pag" onClick={nextPage} disabled={currentPage === totalPages}>
+                  Próxima
+                </button>
+              </div>
+            </div>           
+          ) : (
+            <div style={{marginTop: 20}}>
+              <p style={{textAlign: 'center'}}>Nenhum usuario foi encontrado!</p>
+            </div>
+          )
+        }
       </main>
       <Modal
         isOpen={isModalOpen}
@@ -252,6 +309,30 @@ function Gerenciar() {
           </div>
 
           <div>
+            <p>Prontuario:</p>
+            <input
+              type="text"
+              className="input-form-gerenciar"
+              placeholder="prontuario"
+              name="prontuario"
+              value={valor.prontuario}
+              onChange={valorEntrada}
+            ></input>
+          </div>
+
+          <div>
+            <p>CPF:</p>
+            <input
+              type="text"
+              className="input-form-gerenciar"
+              placeholder="cpf"
+              name="cpf"
+              value={valor.cpf}
+              onChange={valorEntrada}
+            ></input>
+          </div>
+
+          <div>
             <p>Turno:</p>
             <select
               className="input-form-gerenciar"
@@ -265,8 +346,10 @@ function Gerenciar() {
             </select>
           </div>
 
+          {
+          userNow != userSelected?.id && 
           <div>
-          <p>Tipo:</p>
+            <p>Tipo:</p>
             <select
               className="input-form-gerenciar"
               name="tipo"
@@ -282,7 +365,7 @@ function Gerenciar() {
               <option value="secretario">Secretário</option>
               <option value="porteiro">Porteiro</option>
             </select>
-          </div>
+          </div>}
 
           <div>
             <p>Autorizado Sair:</p>

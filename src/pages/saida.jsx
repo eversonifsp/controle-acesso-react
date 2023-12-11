@@ -10,7 +10,6 @@ import apiClient from "../config/apiClient";
 
 function Saida() {
   const storedToken = localStorage.getItem("token");
-  console.log(storedToken);
   const history = useNavigate();
 
   const [valor, setValor] = useState({
